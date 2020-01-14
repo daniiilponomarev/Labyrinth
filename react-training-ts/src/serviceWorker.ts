@@ -18,6 +18,7 @@ const isLocalhost = Boolean(
     window.location.hostname.match(/^127(?:\.(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)){3}$/)
 );
 
+// tslint:disable
 type Config = {
   onSuccess?: (registration: ServiceWorkerRegistration) => void;
   onUpdate?: (registration: ServiceWorkerRegistration) => void;
@@ -44,6 +45,7 @@ export function register(config?: Config) {
         // Add some additional logging to localhost, pointing developers to the
         // service worker/PWA documentation.
         navigator.serviceWorker.ready.then(() => {
+          // tslint:disable
           console.log(
             'This web app is being served cache-first by a service ' +
               'worker. To learn more, visit https://bit.ly/CRA-PWA'
@@ -75,7 +77,7 @@ function registerValidSW(swUrl: string, config?: Config) {
               console.log(
                 'New content is available and will be used when all ' +
                   'tabs for this page are closed. See https://bit.ly/CRA-PWA.'
-              );
+              ); // tslint:disable
 
               // Execute callback
               if (config && config.onUpdate) {
@@ -85,7 +87,7 @@ function registerValidSW(swUrl: string, config?: Config) {
               // At this point, everything has been precached.
               // It's the perfect time to display a
               // "Content is cached for offline use." message.
-              console.log('Content is cached for offline use.');
+              console.log('Content is cached for offline use.'); // tslint:disable
 
               // Execute callback
               if (config && config.onSuccess) {
@@ -97,7 +99,7 @@ function registerValidSW(swUrl: string, config?: Config) {
       };
     })
     .catch(error => {
-      console.error('Error during service worker registration:', error);
+      console.error('Error during service worker registration:', error); // tslint:disable
     });
 }
 
@@ -122,10 +124,11 @@ function checkValidServiceWorker(swUrl: string, config?: Config) {
       }
     })
     .catch(() => {
-      console.log('No internet connection found. App is running in offline mode.');
+      console.log('No internet connection found. Game is running in offline mode.'); // tslint:disable
     });
 }
 
+/* tslint:disable */
 export function unregister() {
   if ('serviceWorker' in navigator) {
     navigator.serviceWorker.ready.then(registration => {
@@ -133,3 +136,4 @@ export function unregister() {
     });
   }
 }
+/* tslint:enable */
