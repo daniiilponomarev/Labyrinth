@@ -2,14 +2,35 @@ import React from 'react';
 import { map, values } from 'ramda';
 import styled, { createGlobalStyle, ThemeProvider } from 'styled-components';
 import { createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles';
-import Button from '@material-ui/core/Button';
 
-import { colors, sizes} from './common';
+import { colors, sizes } from 'common';
+import { Board } from 'containers/board';
 
-import logo from './logo.svg';
-import './Game.css';
+const GlobalStyle: any = createGlobalStyle`
+@import-normalize; /* bring in normalize.css styles */
 
-const GlobalStyle = createGlobalStyle`
+html {
+  /* 1rem = 10px */
+  font-size: 62.5%;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
+    'Droid Sans', 'Helvetica Neue', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-size: 1.6rem;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+}
+`;
+
+const AppWrapper = styled.div`
+  height: 100vh;
+  background: linear-gradient(${colors.gray10}, ${colors.gray0});
 `;
 
 const theme = {
@@ -51,26 +72,22 @@ const muiTheme = createMuiTheme({
   }
 });
 
-export const Game: React.FC = () => {
+const BoardsContainer = styled.div`
+  display: flex;
+  justify-content: center;
+`;
+
+export const Game: React.FC<{}> = () => {
   return (
-    <div className="App">
-      {/*<GlobalStyle whiteColor />*/}
+    <AppWrapper className="App">
+      <GlobalStyle whiteColor={true} />
       <ThemeProvider theme={theme}>
         <MuiThemeProvider theme={muiTheme}>
-          <Button variant="contained" color="primary">
-            Hello World
-          </Button>
-          {/*<header className="App-header">*/}
-          {/*  <img src={logo} className="App-logo" alt="logo" />*/}
-          {/*  <p>*/}
-          {/*    Edit <code>src/App.tsx</code> and save to reload.*/}
-          {/*  </p>*/}
-          {/*  <a className="App-link" href="https://reactjs.org" target="_blank" rel="noopener noreferrer">*/}
-          {/*    Learn React*/}
-          {/*  </a>*/}
-          {/*</header>*/}
+          <BoardsContainer>
+            <Board />
+          </BoardsContainer>
         </MuiThemeProvider>
       </ThemeProvider>
-    </div>
+    </AppWrapper>
   );
 };

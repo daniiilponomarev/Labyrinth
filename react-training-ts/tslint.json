@@ -6,7 +6,8 @@
     // override tslint-react rules here
     "jsx-wrap-multiline": false,
     "no-submodule-imports": false,
-    "ordered-imports": false
+    "ordered-imports": false,
+    "no-implicit-dependencies": false
   },
   "rulesDirectory": []
 }

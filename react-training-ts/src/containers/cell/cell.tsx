@@ -1,16 +1,27 @@
 import React from 'react';
-// import createAsyncCallComponent from 'react-async-call';
-// import { Flex } from '@rebass/grid';
-// import Delay from 'react-delay';
+import styled from 'styled-components';
 
-// import { getCustomers } from '../../api';
-// import { Spinner } from '../../components';
-// import { REQUEST_TOLERATED_TIME, indentations, colors } from '../../common';
+import { colors } from 'common';
+import { Wall } from '../../components/wall';
 
-export const Cell: React.FC = () => {
+const CellContainer = styled.span`
+  display: inline-block;
+  width: 5rem;
+  height: 5rem;
+  box-sizing: border-box;
+  // border-radius: 5px;
+  // border: 1px solid ${colors.gray50};
+  background: linear-gradient(${colors.gray30}, ${colors.gray20});
+`;
+
+export const Cell: React.FC<{ id: number }> = ({ id }) => {
   return (
-    <div>
-      <title>Главная</title>
-    </div>
+    <CellContainer>
+      <Wall />
+      <Wall />
+      {id}
+      <Wall />
+      <Wall />
+    </CellContainer>
   );
 };
