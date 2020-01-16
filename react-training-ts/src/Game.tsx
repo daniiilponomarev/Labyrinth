@@ -4,7 +4,7 @@ import styled, { createGlobalStyle, ThemeProvider } from 'styled-components';
 import { createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles';
 
 import { colors, sizes } from 'common';
-import { Board } from 'containers/board';
+import { Board, Header, Footer } from 'containers';
 
 const GlobalStyle: any = createGlobalStyle`
 @import-normalize; /* bring in normalize.css styles */
@@ -29,6 +29,11 @@ code {
 `;
 
 const AppWrapper = styled.div`
+  display: grid;
+  grid-template: 50px 1fr 50px / 100%;
+  // grid-template-areas: "header"
+  //                      "boards"
+  //                      "footer"
   height: 100vh;
   background: linear-gradient(${colors.gray10}, ${colors.gray0});
 `;
@@ -72,8 +77,10 @@ const muiTheme = createMuiTheme({
   }
 });
 
+// TODO: make moving boards with flex or grid. Try to move without media queries
 const BoardsContainer = styled.div`
   display: flex;
+  // flex-direction: column;
   justify-content: center;
 `;
 
@@ -83,9 +90,12 @@ export const Game: React.FC<{}> = () => {
       <GlobalStyle whiteColor={true} />
       <ThemeProvider theme={theme}>
         <MuiThemeProvider theme={muiTheme}>
+          <Header />
           <BoardsContainer>
             <Board />
+            <Board />
           </BoardsContainer>
+          <Footer />
         </MuiThemeProvider>
       </ThemeProvider>
     </AppWrapper>

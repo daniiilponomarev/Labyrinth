@@ -24,22 +24,13 @@ export const colors = {
   gray80: '#3f3f3f',
   gray90: '#0d0d0d',
 
-  white: '#f5f5f5',
+  white: '#f5f5f5'
 };
 
 export const sizes = {
   mobile: 32,
   tablet: 52,
   desktop: 64
-};
-
-export const zIndexes = {
-  pageHeader: 5
-};
-
-export const indentations = {
-  s: ['1rem', '2rem', '2.4rem'],
-  m: ['2.4rem', '3.2rem']
 };
 
 export const media = Object.keys(sizes).reduce((acc, label) => {
