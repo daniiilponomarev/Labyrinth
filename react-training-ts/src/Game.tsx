@@ -3,7 +3,7 @@ import { map, values } from 'ramda';
 import styled, { createGlobalStyle, ThemeProvider } from 'styled-components';
 import { createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles';
 
-import { colors, sizes } from 'common';
+import { colors, sizes, media } from 'common';
 import { Board, Header, Footer } from 'containers';
 
 const GlobalStyle: any = createGlobalStyle`
@@ -78,10 +78,22 @@ const muiTheme = createMuiTheme({
 });
 
 // TODO: make moving boards with flex or grid. Try to move without media queries
+// TODO: add .properties file to every component
 const BoardsContainer = styled.div`
-  display: flex;
+  // display: flex;
   // flex-direction: column;
-  justify-content: center;
+  // justify-content: center;
+  display: grid;
+  grid-template-rows: repeat(2, 1fr);
+  row-gap: 1rem;
+  align-items: center;
+  justify-items: center;
+  // @ts-ignore
+  ${media.desktop`
+    grid-template-columns: repeat(2, 1fr);
+    grid-column-gap: 1rem;
+    grid-template-rows: none;
+  `};
 `;
 
 export const Game: React.FC<{}> = () => {

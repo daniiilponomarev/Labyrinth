@@ -4,9 +4,11 @@ import styled from 'styled-components';
 import { colors } from 'common';
 import { Wall } from '../../components/wall';
 
-// TODO: change to % instead of rems or pxs
+// TODO: change to % instead of rems or pxs, remember about the walls
 const CellContainer = styled.span`
   display: inline-block;
+  width: 10%;
+  height: 100%;
   max-width: 5rem;
   max-height: 5rem;
   box-sizing: border-box;

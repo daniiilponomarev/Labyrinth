@@ -16,9 +16,10 @@ import { Cell } from 'containers/cell';
 
 const BoardContainer = styled.div`
   display: flex;
-  // flex-direction: column;
-  width: ${(props: { windowWidth: number }) => `${props.windowWidth}px`};
-  height: ${(props: { windowWidth: number }) => `${props.windowWidth}px`};
+  flex-direction: column;
+  // width: ${(props: { windowWidth: number }) => `${props.windowWidth}px`};
+  width: 95%;
+  height: ${(props: { windowWidth: number }) => `${props.windowWidth - 20}px`};
   max-width: 50rem;
   // min-width: 50rem;
   max-height: 50rem;
@@ -27,10 +28,13 @@ const BoardContainer = styled.div`
   border: 1px solid ${colors.gray50};
 `;
 
-const BoardRow = styled.div``;
+const BoardRow = styled.div`
+  height: 10%;
+`;
 
 export const Board: React.FC<any> = () => {
   // const size = useWindowSize();
+  // const windowWidth = size.width;
   const windowWidth = typeof window === 'object' ? window.innerWidth : undefined;
 
   const cells: number[][] = [];
@@ -42,6 +46,7 @@ export const Board: React.FC<any> = () => {
       cells[i][j] = cellId++;
     }
   }
+  console.log(windowWidth);
 
   return (
     // @ts-ignore
