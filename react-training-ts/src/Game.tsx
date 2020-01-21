@@ -21,6 +21,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-size: 1.6rem;
+  color: ${colors.blue90};
 }
 
 code {
@@ -30,7 +31,7 @@ code {
 
 const AppWrapper = styled.div`
   display: grid;
-  grid-template: 50px 1fr 50px / 100%;
+  grid-template: 1fr 50px / 100%;
   // grid-template-areas: "header"
   //                      "boards"
   //                      "footer"
