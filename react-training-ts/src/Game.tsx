@@ -31,7 +31,7 @@ code {
 
 const AppWrapper = styled.div`
   display: grid;
-  grid-template: 1fr 50px / 100%;
+  grid-template: 1fr 3rem / 100%;
   // grid-template-areas: "header"
   //                      "boards"
   //                      "footer"

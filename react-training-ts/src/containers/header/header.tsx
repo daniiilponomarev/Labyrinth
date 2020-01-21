@@ -16,8 +16,8 @@ const HeaderContainer = styled.div`
   position: fixed;
   top: 0;
   height: 4rem;
-  background-color: #fff;
-  box-shadow: 0 2px 2px 3px #f6f7f8;
+  background-color: ${colors.gray0};
+  box-shadow: 0 2px 2px 3px ${colors.gray20};
   width: 100%;
   font-weight: bold;
 `;
