@@ -7,7 +7,7 @@ import { map } from 'ramda';
 // import CardContent from '@material-ui/core/CardContent/index';
 // import Typography from '@material-ui/core/Typography/index';
 
-import { colors } from 'common';
+import { colors } from 'utils';
 import { Cell } from 'containers/cell';
 // import { LogoSVG } from '../../components/common-components';
 // import { ThemeProvider } from 'styled-components';

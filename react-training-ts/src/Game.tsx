@@ -3,7 +3,7 @@ import { map, values } from 'ramda';
 import styled, { createGlobalStyle, ThemeProvider } from 'styled-components';
 import { createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles';
 
-import { colors, sizes, media } from 'common';
+import { colors, sizes, media } from 'utils';
 import { Board, Header, Footer } from 'containers';
 
 const GlobalStyle: any = createGlobalStyle`

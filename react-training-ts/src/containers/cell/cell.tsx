@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import { colors } from 'common';
-import { Wall } from '../../components/wall';
+import { colors } from 'utils';
+import { Wall } from 'components/wall';
 
 // TODO: change to % instead of rems or pxs, remember about the walls
 const CellContainer = styled.span`

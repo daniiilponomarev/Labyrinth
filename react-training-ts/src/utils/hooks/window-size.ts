@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react';
 
+// resizing window hook
 export const useWindowSize = () => {
   const isClient = typeof window === 'object';
 
   function getSize() {
-    // console.log('getSize', isClient, window.innerWidth);
     return {
       height: isClient ? window.innerHeight : undefined,
       width: isClient ? window.innerWidth : undefined
@@ -14,7 +14,6 @@ export const useWindowSize = () => {
   const [windowSize, setWindowSize] = useState(getSize);
 
   useEffect(() => {
-    // console.log('useEffect()', isClient);
     if (!isClient) {
       return undefined;
     }

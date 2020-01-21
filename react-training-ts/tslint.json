@@ -9,7 +9,8 @@
     "ordered-imports": false,
     "no-implicit-dependencies": false,
     "react-hooks-nesting": "error",
-    "exhaustive-deps": "warn"
+    "exhaustive-deps": "warn",
+    "object-literal-sort-keys": false
   },
   "rulesDirectory": []
 }
