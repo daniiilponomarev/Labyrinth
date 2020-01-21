@@ -8,7 +8,8 @@
     "no-submodule-imports": false,
     "ordered-imports": false,
     "no-implicit-dependencies": false,
-    "react-hooks-nesting": "error"
+    "react-hooks-nesting": "error",
+    "exhaustive-deps": "warn"
   },
   "rulesDirectory": []
 }
