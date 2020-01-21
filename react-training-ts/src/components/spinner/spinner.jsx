@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import { colors } from '../../common';
+import { colors } from '../../utils';
 
 export const Spinner = styled.div`
   margin: 0 auto;
