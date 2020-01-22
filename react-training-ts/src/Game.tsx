@@ -36,7 +36,7 @@ const AppWrapper = styled.div`
   //                      "boards"
   //                      "footer"
   height: 100vh;
-  background: linear-gradient(${colors.gray10}, ${colors.gray0});
+  background: linear-gradient(${colors.gray50}, ${colors.gray40});
 `;
 
 const theme = {
@@ -81,15 +81,26 @@ const muiTheme = createMuiTheme({
 // TODO: make moving boards with flex or grid. Try to move without media queries
 // TODO: add .properties file to every component
 const BoardsContainer = styled.div`
-  // display: flex;
-  // flex-direction: column;
-  // justify-content: center;
-  display: grid;
-  grid-template-rows: repeat(2, 1fr);
-  row-gap: 1rem;
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
   align-items: center;
-  justify-items: center;
-  // @ts-ignore
+  padding: 5rem 0 1rem;
+  // display: grid;
+  // grid-template-rows: repeat(2, 1fr);
+  // row-gap: 1rem;
+  // align-items: center;
+  // justify-items: center;
+  ${media.desktop`
+    flex-flow: row;
+    // grid-template-columns: repeat(2, 1fr);
+    // grid-column-gap: 1rem;
+    // grid-template-rows: none;
+  `};
+`;
+
+const StyledBoard = styled(Board)`
+  margin: 1rem;
   ${media.desktop`
     grid-template-columns: repeat(2, 1fr);
     grid-column-gap: 1rem;
@@ -105,8 +116,8 @@ export const Game: React.FC<{}> = () => {
         <MuiThemeProvider theme={muiTheme}>
           <Header />
           <BoardsContainer>
-            <Board />
-            <Board />
+            <StyledBoard />
+            <StyledBoard />
           </BoardsContainer>
           <Footer />
         </MuiThemeProvider>

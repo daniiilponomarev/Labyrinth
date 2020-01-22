@@ -32,7 +32,7 @@ const BoardRow = styled.div`
   height: 10%;
 `;
 
-export const Board: React.FC<any> = () => {
+export const Board: React.FC<any> = ({ className }) => {
   // const size = useWindowSize();
   // const windowWidth1 = size.width;
   const windowWidth = typeof window === 'object' ? window.innerWidth : undefined;
@@ -46,11 +46,11 @@ export const Board: React.FC<any> = () => {
       cells[i][j] = cellId++;
     }
   }
-  console.log(windowWidth);
+  console.log(className);
 
   return (
     // @ts-ignore
-    <BoardContainer windowWidth={windowWidth}>
+    <BoardContainer windowWidth={windowWidth} className={className}>
       {map((cellsRow: number[]): any => {
         return (
           // maybe another key should be used
