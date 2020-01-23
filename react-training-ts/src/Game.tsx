@@ -29,6 +29,7 @@ code {
 }
 `;
 
+// TODO: change to this layout: https://habr.com/ru/post/479580/
 const AppWrapper = styled.div`
   display: grid;
   grid-template: 1fr 3rem / 100%;
@@ -36,7 +37,7 @@ const AppWrapper = styled.div`
   //                      "boards"
   //                      "footer"
   height: 100vh;
-  background: linear-gradient(${colors.gray50}, ${colors.gray40});
+  background: linear-gradient(${colors.gray40}, ${colors.gray30});
 `;
 
 const theme = {

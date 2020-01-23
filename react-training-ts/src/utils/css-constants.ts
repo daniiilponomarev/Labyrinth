@@ -29,3 +29,12 @@ export const sizes: { mobile: number; tablet: number; desktop: number } = {
   tablet: 52,
   desktop: 64
 };
+
+export const zIndexes = {
+  wall: 1,
+  innerHexagon: 2
+};
+
+export const transition: { average: string } = { average: '1.3s' };
+
+export const positions = { top: 'top', bottom: 'bottom', left: 'left', right: 'right' };

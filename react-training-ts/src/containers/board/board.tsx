@@ -1,20 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import styled from 'styled-components';
-import { map } from 'ramda';
-
-// import Card from '@material-ui/core/Card/index';
-// import CardMedia from '@material-ui/core/CardMedia/index';
-// import CardContent from '@material-ui/core/CardContent/index';
-// import Typography from '@material-ui/core/Typography/index';
+import styled, { StyledComponent } from 'styled-components';
+import { map, addIndex } from 'ramda';
 
 import { colors, useWindowSize } from 'utils';
-import { Cell } from 'containers/cell';
-// import { LogoSVG } from '../../components/common-components';
-// import { ThemeProvider } from 'styled-components';
-// import { MuiThemeProvider } from '@material-ui/core';
-// import Button from '@material-ui/core/Button';
+import { Cell, CellWithWalls } from 'containers';
+import { Wall } from '../../components/wall';
+// import { CellWithWalls } from '../cellWithWalls';
 
-const BoardContainer = styled.div`
+const BoardContainer: StyledComponent<any, any> = styled.div`
   display: flex;
   flex-flow: column nowrap;
   // width: ${(props: { windowWidth: number }) => `${props.windowWidth}px`};
@@ -26,9 +19,11 @@ const BoardContainer = styled.div`
   // min-height: 50rem;
   border-radius: 5px;
   border: 1px solid ${colors.gray50};
+  // overflow: hidden;
 `;
 
 const BoardRow = styled.div`
+  position: relative;
   height: 10%;
 `;
 
@@ -46,18 +41,30 @@ export const Board: React.FC<any> = ({ className }) => {
       cells[i][j] = cellId++;
     }
   }
-  console.log(className);
+  console.log(
+    addIndex(map)((cellsRow: unknown, i): any => {
+      console.log(i);
+      return cellsRow;
+    }, cells)
+  );
 
   return (
-    // @ts-ignore
     <BoardContainer windowWidth={windowWidth} className={className}>
-      {map((cellsRow: number[]): any => {
+      {addIndex(map)((cellsRow: any, rowIndex: number): any => {
         return (
           // maybe another key should be used
           // TODO: check performance
-          <BoardRow key={cellsRow[0]}>
+          <BoardRow key={`row-${cellsRow[0]}`}>
+            <Wall side="right" />
             {map((cell: number): any => {
-              return <Cell id={cell} key={cell} />;
+              return <CellWithWalls id={cell} key={`cell-${cell}`} />;
+              // return (
+              //   <span key={`cell-${cell}`}>
+              //     <Wall side="left" />
+              //     <Wall side="top" />
+              //     <Cell id={`cell-${cell}`} />
+              //   </span>
+              // );
             }, cellsRow)}
           </BoardRow>
         );

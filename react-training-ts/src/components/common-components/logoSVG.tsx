@@ -1,16 +1,16 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import { colors } from 'utils';
+import { colors, transition } from 'utils';
 
 const InnerPath = styled.path`
   stroke: ${colors.blue90};
-  transition: stroke 0.3s;
+  transition: stroke ${transition.average};
 `;
 
 const OuterPath = styled.path`
   stroke: ${colors.blue90};
-  transition: stroke 0.3s;
+  transition: stroke ${transition.average};
 `;
 
 const Logo = styled.svg`
