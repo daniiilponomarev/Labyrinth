@@ -35,6 +35,6 @@ export const zIndexes = {
   innerHexagon: 2
 };
 
-export const transition: { average: string } = { average: '1.3s' };
+export const transition: { average: string } = { average: '0.3s' };
 
 export const positions = { top: 'top', bottom: 'bottom', left: 'left', right: 'right' };
