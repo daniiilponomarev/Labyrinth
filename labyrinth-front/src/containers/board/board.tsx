@@ -1,5 +1,5 @@
 import React from 'react';
-import styled, { StyledComponent } from 'styled-components';
+import styled from 'styled-components';
 import { map, addIndex } from 'ramda';
 
 import { colors } from 'utils';
@@ -7,12 +7,12 @@ import { CellWithWalls } from 'containers';
 import { Wall } from '../../components/wall';
 // import { CellWithWalls } from '../cellWithWalls';
 
-const BoardContainer: StyledComponent<any, any> = styled.div`
+const BoardContainer = styled.div<{ windowWidth: number }>`
   display: flex;
   flex-flow: column nowrap;
-  // width: ${(props: { windowWidth: number }) => `${props.windowWidth}px`};
+  // width: ${props => `${props.windowWidth}px`};
   width: 95%;
-  height: ${(props: { windowWidth: number }) => `${props.windowWidth - 20}px`};
+  height: ${props => `${props.windowWidth - 20}px`};
   max-width: 50rem;
   // min-width: 50rem;
   max-height: 50rem;
@@ -43,7 +43,7 @@ export const Board: React.FC<any> = ({ className }) => {
   }
 
   return (
-    <BoardContainer windowWidth={windowWidth} className={className}>
+    <BoardContainer windowWidth={windowWidth || 0} className={className}>
       {addIndex(map)((cellsRow: any, rowIndex: number): any => {
         return (
           // maybe another key should be used

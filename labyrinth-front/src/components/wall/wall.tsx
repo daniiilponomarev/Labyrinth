@@ -2,6 +2,7 @@
 // import styled from 'styled-components';
 // import { colors } from 'utils';
 //
+// fix types
 // const wall = ({ className, size = 50, onClick }: { className?: string; size?: number; onClick?: () => any }) => {
 //   const d1 = `M ${size / 4 / 2} 0
 //          L ${size / 4} ${size * (1 / 8)}
@@ -50,16 +51,16 @@
 // };
 
 import React from 'react';
-import styled, { StyledComponent } from 'styled-components';
+import styled from 'styled-components';
 import { colors, transition, zIndexes, positions } from 'utils';
 
 // TODO: Try to change it to svg
-const StyledWall: StyledComponent<any, any> = styled.div`
+const StyledWall = styled.div<{ size: number; side: string }>`
   background: ${colors.blue0};
   position: absolute;
   transition: background ${transition.average};
   z-index: ${zIndexes.wall};
-  ${({ size, side }: any) =>
+  ${({ size, side }) =>
     side === positions.top || side === positions.bottom
       ? `
           margin: 0 ${size / 8}rem;
@@ -80,7 +81,7 @@ const StyledWall: StyledComponent<any, any> = styled.div`
     width: 0;
     height: 0;
     position: absolute;
-    ${({ size, side }: any) =>
+    ${({ size, side }) =>
       side === positions.top || side === positions.bottom
         ? `
             border-top: ${size / 8}rem  solid transparent;
@@ -93,7 +94,7 @@ const StyledWall: StyledComponent<any, any> = styled.div`
     transition: border ${transition.average};
   }
   &::before {
-    ${({ size, side }: any) =>
+    ${({ size, side }) =>
       side === positions.top || side === positions.bottom
         ? `
             left: -${size / 8}rem;
@@ -105,7 +106,7 @@ const StyledWall: StyledComponent<any, any> = styled.div`
           `};
   }
   &::after {
-    ${({ size, side }: any) =>
+    ${({ size, side }) =>
       side === positions.top || side === positions.bottom
         ? `
             right: -${size / 8}rem;
@@ -128,7 +129,7 @@ const InnerHexagon = styled(StyledWall)`
 
   &::before {
     z-index: ${zIndexes.innerHexagon};
-    ${({ size, side }: any) =>
+    ${({ size, side }) =>
       side === positions.top || side === positions.bottom
         ? `
             border-right-color: ${colors.blue90}};
@@ -139,7 +140,7 @@ const InnerHexagon = styled(StyledWall)`
   }
   &::after {
     z-index: ${zIndexes.innerHexagon};
-    ${({ size, side }: any) =>
+    ${({ size, side }) =>
       side === positions.top || side === positions.bottom
         ? `
             border-left-color: ${colors.blue90}};
@@ -152,13 +153,13 @@ const InnerHexagon = styled(StyledWall)`
   &:hover {
     background: ${colors.blue50};
     &::before {
-      ${({ side }: any) =>
+      ${({ side }) =>
         side === positions.top || side === positions.bottom
           ? `border-right-color: ${colors.blue50}`
           : `border-bottom-color: ${colors.blue50};`}
     }
     &::after {
-      ${({ side }: any) =>
+      ${({ side }) =>
         side === positions.top || side === positions.bottom
           ? `border-left-color: ${colors.blue50}`
           : `border-top-color: ${colors.blue50};`}
