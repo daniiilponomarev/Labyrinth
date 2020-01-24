@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 import { colors } from 'utils';
-import { LogoSVG } from 'components';
+import { LogoSVG, InnerPath, OuterPath } from 'components';
 // import { ThemeProvider } from 'styled-components';
 // import { MuiThemeProvider } from '@material-ui/core';
 // import Button from '@material-ui/core/Button';
@@ -18,6 +18,15 @@ const HeaderContainer = styled.div`
   box-shadow: 0 2px 2px 3px ${colors.gray20};
   width: 100%;
   font-weight: bold;
+
+  &:hover {
+    & ${InnerPath} {
+      stroke: ${colors.gray90};
+    }
+    & ${OuterPath} {
+      stroke: ${colors.blue70};
+    }
+  }
 `;
 
 const StyledLogoSVG = styled(LogoSVG)`

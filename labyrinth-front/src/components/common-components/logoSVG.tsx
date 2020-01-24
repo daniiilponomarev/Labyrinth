@@ -3,29 +3,19 @@ import styled from 'styled-components';
 
 import { colors, transition } from 'utils';
 
-const InnerPath = styled.path`
+export const InnerPath = styled.path`
   stroke: ${colors.blue90};
   transition: stroke ${transition.average};
 `;
 
-const OuterPath = styled.path`
+export const OuterPath = styled.path`
   stroke: ${colors.blue90};
   transition: stroke ${transition.average};
-`;
-
-const Logo = styled.svg`
-  &:hover ${OuterPath} {
-    stroke: ${colors.blue70};
-  }
-
-  &:hover ${InnerPath} {
-    stroke: ${colors.blue70};
-  }
 `;
 
 export const LogoSVG = ({ className, size, onClick }: { className?: string; size: number; onClick?: () => any }) => (
   <React.Fragment>
-    <Logo
+    <svg
       className={className}
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 64 64"
@@ -53,6 +43,6 @@ export const LogoSVG = ({ className, size, onClick }: { className?: string; size
         stroke-linejoin="round"
         stroke-linecap="butt"
       />
-    </Logo>
+    </svg>
   </React.Fragment>
 );
