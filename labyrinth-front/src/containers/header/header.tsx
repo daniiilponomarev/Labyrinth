@@ -1,9 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import { map } from 'ramda';
 
 import { colors } from 'utils';
-import { Cell } from 'containers/cell';
 import { LogoSVG } from 'components';
 // import { ThemeProvider } from 'styled-components';
 // import { MuiThemeProvider } from '@material-ui/core';
@@ -24,12 +22,6 @@ const HeaderContainer = styled.div`
 
 const StyledLogoSVG = styled(LogoSVG)`
   margin-right: 1rem;
-`;
-
-const StyledLogoText = styled.span`
-  &:hover {
-    stroke: ${colors.blue70};
-  }
 `;
 
 export const Header: React.FC<any> = () => {

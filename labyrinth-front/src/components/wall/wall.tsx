@@ -53,6 +53,7 @@ import React from 'react';
 import styled, { StyledComponent } from 'styled-components';
 import { colors, transition, zIndexes, positions } from 'utils';
 
+// TODO: Try to change it to svg
 const StyledWall: StyledComponent<any, any> = styled.div`
   background: ${colors.blue0};
   position: absolute;
@@ -165,40 +166,7 @@ const InnerHexagon = styled(StyledWall)`
   }
 `;
 
-const InnerHexagonOld = styled(StyledWall)`
-  margin: 0;
-  background: ${colors.blue90};
-  transform: scale(0.9);
-  z-index: ${zIndexes.innerHexagon};
-
-  &::before {
-    // border-bottom-color: ${colors.blue90}};
-  }
-  &::after {
-    // border-top-color: ${colors.blue90}};
-  }
-
-  &:hover {
-    background: ${colors.blue0};
-    &::before {
-      // border-bottom-color: ${colors.blue0};
-    }
-    &::after {
-      // border-top-color: ${colors.blue0};
-    }
-  }
-`;
-
-const LeftWall = styled(StyledWall)`
-  // left: -0.6rem;
-`;
-
-const TopWall = styled(StyledWall)`
-  // transform: rotate(90deg);
-`;
-
 export const Wall = ({ side, size = 5 }: { side: string; size?: number }) => {
-  console.log('Wall', side);
   switch (side) {
     case 'top': {
       return (

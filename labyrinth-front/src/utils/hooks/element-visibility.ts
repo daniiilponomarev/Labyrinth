@@ -4,6 +4,7 @@ import React, { useState, useEffect, useRef } from 'react';
 export const useIsInView = (margin: string = '0px') => {
   const [isIntersecting, setIntersecting] = useState(false);
   const ref: React.MutableRefObject<any> = useRef();
+  const currentRef = ref.current;
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -13,13 +14,14 @@ export const useIsInView = (margin: string = '0px') => {
       { rootMargin: margin }
     );
 
-    if (ref.current) {
-      observer.observe(ref.current);
+    if (currentRef) {
+      observer.observe(currentRef);
     }
 
     return () => {
-      observer.unobserve(ref.current);
+      observer.unobserve(currentRef);
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return [ref, isIntersecting];

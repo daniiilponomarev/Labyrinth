@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import styled, { StyledComponent } from 'styled-components';
 import { map, addIndex } from 'ramda';
 
-import { colors, useWindowSize } from 'utils';
-import { Cell, CellWithWalls } from 'containers';
+import { colors } from 'utils';
+import { CellWithWalls } from 'containers';
 import { Wall } from '../../components/wall';
 // import { CellWithWalls } from '../cellWithWalls';
 
@@ -41,12 +41,6 @@ export const Board: React.FC<any> = ({ className }) => {
       cells[i][j] = cellId++;
     }
   }
-  console.log(
-    addIndex(map)((cellsRow: unknown, i): any => {
-      console.log(i);
-      return cellsRow;
-    }, cells)
-  );
 
   return (
     <BoardContainer windowWidth={windowWidth} className={className}>
