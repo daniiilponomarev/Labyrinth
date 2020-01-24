@@ -1,0 +1,19 @@
+{
+  "name": "labyrinth",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/daniiilponomarev/Labyrinth.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/daniiilponomarev/Labyrinth/issues"
+  },
+  "homepage": "https://github.com/daniiilponomarev/Labyrinth#readme"
+}
