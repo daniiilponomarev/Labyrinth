@@ -3,9 +3,34 @@ import styled from 'styled-components';
 
 import { colors } from 'utils';
 import { LogoSVG, InnerPath, OuterPath } from 'components';
-// import { ThemeProvider } from 'styled-components';
-// import { MuiThemeProvider } from '@material-ui/core';
-// import Button from '@material-ui/core/Button';
+
+const StyledLogoSVG = styled(LogoSVG)`
+  margin-right: 1rem;
+`;
+
+const HeaderTitle = styled.span`
+  display: inline-block;
+  position: relative;
+
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    transform: scaleX(0);
+    height: 2px;
+    left: 0;
+    background-color: ${colors.blue90};
+    transform-origin: bottom right;
+    transition: transform 0.25s ease-out;
+  }
+  &::before {
+    top: 0;
+  }
+  &::after {
+    bottom: -3px;
+  }
+`;
 
 const HeaderContainer = styled.div`
   display: flex;
@@ -20,6 +45,10 @@ const HeaderContainer = styled.div`
   font-weight: bold;
 
   &:hover {
+    & ${HeaderTitle}::before, & ${HeaderTitle}::after {
+      transform: scaleX(1);
+      transform-origin: bottom left;
+    }
     & ${InnerPath} {
       stroke: ${colors.gray90};
     }
@@ -29,15 +58,11 @@ const HeaderContainer = styled.div`
   }
 `;
 
-const StyledLogoSVG = styled(LogoSVG)`
-  margin-right: 1rem;
-`;
-
 export const Header: React.FC<any> = () => {
   return (
     <HeaderContainer>
       <StyledLogoSVG size={32} />
-      Labyrinth
+      <HeaderTitle>Labyrinth</HeaderTitle>
     </HeaderContainer>
   );
 };

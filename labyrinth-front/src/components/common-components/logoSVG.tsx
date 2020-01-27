@@ -5,11 +5,13 @@ import { colors, transition } from 'utils';
 
 export const InnerPath = styled.path`
   stroke: ${colors.blue90};
+  stroke-width: 3px;
   transition: stroke ${transition.average};
 `;
 
 export const OuterPath = styled.path`
   stroke: ${colors.blue90};
+  stroke-width: 3px;
   transition: stroke ${transition.average};
 `;
 
@@ -25,7 +27,7 @@ export const LogoSVG = ({ className, size, onClick }: { className?: string; size
       height={size}
       onClick={onClick}
     >
-      <title>Destination Map</title>
+      <title>Map</title>
       <InnerPath
         d="M43.1 17l9.9 9.9M43 27l9.9-9.9m-19.5 7.6a10 10 0 0 1 6.8-2.7M29.7 35.2a10 10 0 0 0 .5-2.9V32a10 10 0 0 1 .9-4.3M21.2 42a10 10 0 0 0 6.6-3.5M9.8 42h7.6M2 42h4"
         stroke-width="2"
