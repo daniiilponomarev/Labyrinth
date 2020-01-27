@@ -16,7 +16,7 @@ export const OuterPath = styled.path`
 `;
 
 export const LogoSVG = ({ className, size, onClick }: { className?: string; size: number; onClick?: () => any }) => (
-  <React.Fragment>
+  <>
     <svg
       className={className}
       xmlns="http://www.w3.org/2000/svg"
@@ -46,5 +46,5 @@ export const LogoSVG = ({ className, size, onClick }: { className?: string; size
         stroke-linecap="butt"
       />
     </svg>
-  </React.Fragment>
+  </>
 );

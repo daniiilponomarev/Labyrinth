@@ -25,6 +25,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
+    "analyze": "source-map-explorer 'build/static/js/*.js'",
     "lint": "tslint --project tsconfig.json"
   },
   "eslintConfig": {
@@ -45,6 +46,7 @@
   "devDependencies": {
     "@types/styled-components": "^4.4.2",
     "babel-plugin-macros": "^2.8.0",
+    "source-map-explorer": "^2.2.2",
     "tslint": "^5.20.1",
     "tslint-config-prettier": "^1.18.0",
     "tslint-react": "^4.1.0",
