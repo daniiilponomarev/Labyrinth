@@ -2,18 +2,31 @@ import React from 'react';
 import styled from 'styled-components';
 
 import { colors, transition } from 'utils';
+import { motion } from 'framer-motion';
 
-export const InnerPath = styled.path`
+export const InnerPath = styled(motion.path)`
   stroke: ${colors.blue90};
   stroke-width: 3px;
   transition: stroke ${transition.average};
 `;
 
-export const OuterPath = styled.path`
+export const OuterPath = styled(motion.path)`
+  fill: ${colors.blue0};
   stroke: ${colors.blue90};
   stroke-width: 3px;
-  transition: stroke ${transition.average};
+  transition: stroke ${transition.average}, fill ${transition.average};
 `;
+
+const iconVariants = {
+  hidden: {
+    opacity: 0,
+    pathLength: 0
+  },
+  visible: {
+    opacity: 1,
+    pathLength: 1
+  }
+};
 
 export const LogoSVG = ({ className, size, onClick }: { className?: string; size: number; onClick?: () => any }) => (
   <>
@@ -28,22 +41,23 @@ export const LogoSVG = ({ className, size, onClick }: { className?: string; size
       onClick={onClick}
     >
       <title>Map</title>
-      <InnerPath
-        d="M43.1 17l9.9 9.9M43 27l9.9-9.9m-19.5 7.6a10 10 0 0 1 6.8-2.7M29.7 35.2a10 10 0 0 0 .5-2.9V32a10 10 0 0 1 .9-4.3M21.2 42a10 10 0 0 0 6.6-3.5M9.8 42h7.6M2 42h4"
-        stroke-width="2"
-        stroke-miterlimit="10"
-        fill="none"
-        stroke-linejoin="round"
-        stroke-linecap="butt"
-      />
       <OuterPath
-        d="M62 10v50l-22-6-16 6-22-6V4l22 6 16-6 22 6z"
-        stroke-width="2"
-        stroke-miterlimit="10"
-        fill="none"
-        data-name="layer1"
-        stroke-linejoin="round"
-        stroke-linecap="butt"
+        d="M63 11v50l-22-6-16 6-22-6V4l22 6 16-6 22 6z"
+        variants={iconVariants}
+        initial="hidden"
+        animate="visible"
+        transition={{
+          default: { duration: Number.parseFloat(transition.long), ease: 'easeInOut' }
+        }}
+      />
+      <InnerPath
+        d="M43 17l9 9M43 27l9-9m-19 7a10 10 0 0 1 6-2M29 35a10 10 0 0 0 1-2V32a10 10 0 0 1 1-4M21 42a10 10 0 0 0 6-3M9 42h7M2 42h4"
+        variants={iconVariants}
+        initial="hidden"
+        animate="visible"
+        transition={{
+            default: { duration: Number.parseFloat(transition.long), ease: 'easeInOut' }
+        }}
       />
     </svg>
   </>

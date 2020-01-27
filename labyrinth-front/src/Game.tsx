@@ -79,7 +79,7 @@ const muiTheme = createMuiTheme({
   }
 });
 
-// TODO: make moving boards with flex or grid. Try to move without media queries
+// TODO: make moving boards within screen width changing with flex or grid. Try to move without media queries
 // TODO: add .properties file to every component
 const BoardsContainer = styled.div`
   display: flex;

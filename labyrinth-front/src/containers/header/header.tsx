@@ -1,8 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import { colors } from 'utils';
+import { colors, transition } from 'utils';
 import { LogoSVG, InnerPath, OuterPath } from 'components';
+import { MuiThemeProvider } from '@material-ui/core/styles';
+import { motion } from 'framer-motion';
 
 const StyledLogoSVG = styled(LogoSVG)`
   margin-right: 1rem;
@@ -22,7 +24,7 @@ const HeaderTitle = styled.span`
     left: 0;
     background-color: ${colors.blue90};
     transform-origin: bottom right;
-    transition: transform 0.25s ease-out;
+    transition: transform ${transition.average} ease-out;
   }
   &::before {
     top: 0;
@@ -49,18 +51,49 @@ const HeaderContainer = styled.div`
       transform: scaleX(1);
       transform-origin: bottom left;
     }
+    & ${OuterPath} {
+      fill: ${colors.blue10};
+      stroke: ${colors.blue70};
+    }
     & ${InnerPath} {
       stroke: ${colors.gray90};
     }
-    & ${OuterPath} {
-      stroke: ${colors.blue70};
-    }
+  }
+`;
+
+const DragContainer = styled.div`
+  //display: flex;
+  //align-items: center;
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  height: 100%;
+  border-radius: 5px;
+  width: 40rem;
+  background: ${colors.blue90};
+`;
+
+const DragSquare = styled(motion.div)`
+    border-radius: 15px;
+    height: 100%;
+    margin: auto;
+    width: 10rem;
+    background: ${colors.blue30};
   }
 `;
 
 export const Header: React.FC<any> = () => {
   return (
     <HeaderContainer>
+      {/*<DragContainer>*/}
+      {/*  <DragSquare*/}
+      {/*    className="square"*/}
+      {/*    whileHover={{ scale: 1.05 }}*/}
+      {/*    drag="x"*/}
+      {/*    dragConstraints={{ left: -150, right: 150 }}*/}
+      {/*    dragElastic={0.1}*/}
+      {/*  />*/}
+      {/*</DragContainer>*/}
       <StyledLogoSVG size={32} />
       <HeaderTitle>Labyrinth</HeaderTitle>
     </HeaderContainer>
