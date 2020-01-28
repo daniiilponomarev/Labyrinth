@@ -1,11 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
-import { IconButton } from '@material-ui/core';
+import { IconButton, List, SwipeableDrawer, ListItem, ListItemIcon, ListItemText } from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
+import MailIcon from '@material-ui/icons/Mail';
 
 import { colors, transition } from 'utils';
-import { LogoSVG, InnerPath, OuterPath } from 'components';
+import { LogoSVG, InnerPath, OuterPath, Aside } from 'components';
 
 const StyledLogoSVG = styled(LogoSVG)`
   margin-right: 1rem;
@@ -64,6 +65,9 @@ const HeaderContainer = styled.div`
 
 const HeaderMenuButton = styled(IconButton)`
   flex: 0 0 3rem;
+  height: 3rem;
+  width: 3rem;
+  margin-left: 1rem;
 `;
 
 const HeaderTitleContainer = styled.div`
@@ -71,7 +75,7 @@ const HeaderTitleContainer = styled.div`
   justify-content: center;
   align-items: center;
   flex: 1 1 auto;
-  margin-right: 3rem;
+  margin-right: 4rem;
 `;
 
 const DragContainer = styled.div`
@@ -96,8 +100,15 @@ const DragSquare = styled(motion.div)`
 `;
 
 export const Header: React.FC<any> = () => {
+  const [isMenuOpened, setIsMenuOpened] = React.useState(false);
+
+  const toggleMenu: (isMenuOpened: boolean) => (event: any) => void = isMenuOpened => event => {
+    setIsMenuOpened(isMenuOpened);
+  };
+
   return (
-    <HeaderContainer>
+    // <HeaderContainer onClick={toggleDrawer(!isMenuOpened)}>
+    <HeaderContainer onClick={toggleMenu(!isMenuOpened)}>
       {/*<DragContainer>*/}
       {/*  <DragSquare*/}
       {/*    className="square"*/}
@@ -121,6 +132,8 @@ export const Header: React.FC<any> = () => {
       <HeaderMenuButton aria-label="menu">
         <MenuIcon />
       </HeaderMenuButton>
+      <Aside isMenuOpened={isMenuOpened} />
+
       <HeaderTitleContainer>
         <StyledLogoSVG size={'3rem'} />
         <HeaderTitle>Labyrinth</HeaderTitle>
