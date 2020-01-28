@@ -1,10 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
+import { motion } from 'framer-motion';
+import { IconButton } from '@material-ui/core';
+import MenuIcon from '@material-ui/icons/Menu';
 
 import { colors, transition } from 'utils';
 import { LogoSVG, InnerPath, OuterPath } from 'components';
-import { MuiThemeProvider } from '@material-ui/core/styles';
-import { motion } from 'framer-motion';
 
 const StyledLogoSVG = styled(LogoSVG)`
   margin-right: 1rem;
@@ -61,6 +62,18 @@ const HeaderContainer = styled.div`
   }
 `;
 
+const HeaderMenuButton = styled(IconButton)`
+  flex: 0 0 3rem;
+`;
+
+const HeaderTitleContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 1 1 auto;
+  margin-right: 3rem;
+`;
+
 const DragContainer = styled.div`
   //display: flex;
   //align-items: center;
@@ -94,8 +107,24 @@ export const Header: React.FC<any> = () => {
       {/*    dragElastic={0.1}*/}
       {/*  />*/}
       {/*</DragContainer>*/}
-      <StyledLogoSVG size={32} />
-      <HeaderTitle>Labyrinth</HeaderTitle>
+
+      {/*<AppBar position="static">*/}
+      {/*  <Toolbar>*/}
+      {/*    <IconButton edge="start" color="inherit" aria-label="menu">*/}
+      {/*      <MenuIcon />*/}
+      {/*    </IconButton>*/}
+      {/*    <Typography variant="h6">News</Typography>*/}
+      {/*    <Button color="inherit">Login</Button>*/}
+      {/*  </Toolbar>*/}
+      {/*</AppBar>*/}
+
+      <HeaderMenuButton aria-label="menu">
+        <MenuIcon />
+      </HeaderMenuButton>
+      <HeaderTitleContainer>
+        <StyledLogoSVG size={'3rem'} />
+        <HeaderTitle>Labyrinth</HeaderTitle>
+      </HeaderTitleContainer>
     </HeaderContainer>
   );
 };

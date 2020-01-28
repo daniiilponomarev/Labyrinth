@@ -1,10 +1,11 @@
 import React from 'react';
 import { map, values } from 'ramda';
 import styled, { createGlobalStyle, ThemeProvider } from 'styled-components';
-import { createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles';
+import { createMuiTheme, MuiThemeProvider, StylesProvider } from '@material-ui/core/styles';
 
 import { colors, sizes, media } from 'utils';
 import { Board, Header, Footer } from 'containers';
+import { Spinner } from './components/spinner';
 
 const GlobalStyle: any = createGlobalStyle`
 @import-normalize; /* bring in normalize.css styles */
@@ -113,16 +114,20 @@ export const Game: React.FC<{}> = () => {
   return (
     <AppWrapper className="App">
       <GlobalStyle whiteColor={true} />
-      <ThemeProvider theme={theme}>
-        <MuiThemeProvider theme={muiTheme}>
-          <Header />
-          <BoardsContainer>
-            <StyledBoard />
-            <StyledBoard />
-          </BoardsContainer>
-          <Footer />
-        </MuiThemeProvider>
-      </ThemeProvider>
+      <StylesProvider injectFirst>
+        <ThemeProvider theme={theme}>
+          <MuiThemeProvider theme={muiTheme}>
+            <Header />
+            {/*<Spinner style={{ margin: '15rem auto 0' }} />*/}
+
+            <BoardsContainer>
+              <StyledBoard />
+              <StyledBoard />
+            </BoardsContainer>
+            <Footer />
+          </MuiThemeProvider>
+        </ThemeProvider>
+      </StylesProvider>
     </AppWrapper>
   );
 };

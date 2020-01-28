@@ -28,7 +28,15 @@ const iconVariants = {
   }
 };
 
-export const LogoSVG = ({ className, size, onClick }: { className?: string; size: number; onClick?: () => any }) => (
+export const LogoSVG = ({
+  className,
+  size,
+  onClick
+}: {
+  className?: string;
+  size: number | string;
+  onClick?: () => any;
+}) => (
   <>
     <svg
       className={className}
@@ -56,7 +64,7 @@ export const LogoSVG = ({ className, size, onClick }: { className?: string; size
         initial="hidden"
         animate="visible"
         transition={{
-            default: { duration: Number.parseFloat(transition.long), ease: 'easeInOut' }
+          default: { duration: Number.parseFloat(transition.long), ease: 'easeInOut' }
         }}
       />
     </svg>
