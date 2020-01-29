@@ -18,7 +18,7 @@ const BoardContainer = styled.div<{ windowWidth: number }>`
   max-height: 50rem;
   // min-height: 50rem;
   border-radius: 5px;
-  border: 1px solid ${colors.gray50};
+  //border: 1px solid ${colors.gray50};
   // overflow: hidden;
 `;
 

@@ -54,9 +54,14 @@ import React from 'react';
 import styled from 'styled-components';
 import { colors, transition, zIndexes, positions } from 'utils';
 
+const outerHexagonColor = colors.gray30;
+const innerHexagonColor = colors.blue90;
+const outerHexagonHoverColor = 'green';
+const innerHexagonHoverColor = 'green';
+
 // TODO: Try to change it to svg
 const StyledWall = styled.div<{ size: number; side: string }>`
-  background: ${colors.blue0};
+  background: ${outerHexagonColor};
   position: absolute;
   transition: background ${transition.average};
   z-index: ${zIndexes.wall};
@@ -98,11 +103,11 @@ const StyledWall = styled.div<{ size: number; side: string }>`
       side === positions.top || side === positions.bottom
         ? `
             left: -${size / 8}rem;
-            border-right: ${size / 8}rem  solid ${colors.blue0};
+            border-right: ${size / 8}rem  solid ${outerHexagonColor};
           `
         : `
             top: -${size / 8}rem;
-            border-bottom: ${size / 8}rem  solid ${colors.blue0};
+            border-bottom: ${size / 8}rem  solid ${outerHexagonColor};
           `};
   }
   &::after {
@@ -110,11 +115,11 @@ const StyledWall = styled.div<{ size: number; side: string }>`
       side === positions.top || side === positions.bottom
         ? `
             right: -${size / 8}rem;
-            border-left: ${size / 8}rem  solid ${colors.blue0};
+            border-left: ${size / 8}rem  solid ${outerHexagonColor};
           `
         : `
             bottom: -${size / 8}rem;
-            border-top: ${size / 8}rem  solid ${colors.blue0};
+            border-top: ${size / 8}rem  solid ${outerHexagonColor};
           `};
   }
 `;
@@ -123,7 +128,7 @@ const InnerHexagon = styled(StyledWall)`
   margin: 0;
   left: 0;
   top: 0;
-  background: ${colors.blue90};
+  background: ${innerHexagonColor};
   transform: scale(0.9);
   z-index: ${zIndexes.innerHexagon};
 
@@ -132,10 +137,10 @@ const InnerHexagon = styled(StyledWall)`
     ${({ size, side }) =>
       side === positions.top || side === positions.bottom
         ? `
-            border-right-color: ${colors.blue90}};
+            border-right-color: ${innerHexagonColor};
           `
         : `
-            border-bottom-color: ${colors.blue90}};
+            border-bottom-color: ${innerHexagonColor};
           `};
   }
   &::after {
@@ -143,10 +148,10 @@ const InnerHexagon = styled(StyledWall)`
     ${({ size, side }) =>
       side === positions.top || side === positions.bottom
         ? `
-            border-left-color: ${colors.blue90}};
+            border-left-color: ${innerHexagonColor};
           `
         : `
-            border-top-color: ${colors.blue90}};
+            border-top-color: ${innerHexagonColor};
           `};
   }
 

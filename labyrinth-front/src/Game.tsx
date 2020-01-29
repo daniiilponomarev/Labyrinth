@@ -38,7 +38,7 @@ const AppWrapper = styled.div`
   //                      "boards"
   //                      "footer"
   height: 100vh;
-  background: linear-gradient(${colors.gray40}, ${colors.gray30});
+  background: ${colors.gray30}; // linear-gradient(${colors.gray40}, ${colors.gray30});
 `;
 
 const theme = {

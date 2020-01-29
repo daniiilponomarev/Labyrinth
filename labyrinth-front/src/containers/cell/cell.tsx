@@ -8,13 +8,11 @@ const CellContainer = styled.span`
   display: inline-block;
   width: 100%;
   height: 100%;
-  // background: linear-gradient(${colors.gray50}, ${colors.gray20});
-  
-  background: linear-gradient(${colors.blue10}, ${colors.blue0});
+  background: radial-gradient(${colors.blue10} 25%, ${colors.gray30} 75%);
   transition: background ${transition.average};
 
   &:hover {
-    background: linear-gradient(${colors.blue0}, ${colors.blue10});
+  background: radial-gradient(${colors.blue20} 10%, ${colors.blue10} 50%, ${colors.gray30} 75%);
   }
 `;
 
