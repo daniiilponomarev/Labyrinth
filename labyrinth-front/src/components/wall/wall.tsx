@@ -54,7 +54,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { colors, transition, zIndexes, positions } from 'utils';
 
-const outerHexagonColor = colors.gray30;
+const outerHexagonColor = 'transparent'; // colors.gray30;
 const innerHexagonColor = colors.blue90;
 const outerHexagonHoverColor = 'green';
 const innerHexagonHoverColor = 'green';

@@ -1,11 +1,11 @@
 import React from 'react';
 import { map, values } from 'ramda';
+import Particles from 'react-particles-js';
 import styled, { createGlobalStyle, ThemeProvider } from 'styled-components';
 import { createMuiTheme, MuiThemeProvider, StylesProvider } from '@material-ui/core/styles';
 
 import { colors, sizes, media } from 'utils';
 import { Board, Header, Footer } from 'containers';
-import { Spinner } from './components/spinner';
 
 const GlobalStyle: any = createGlobalStyle`
 @import-normalize; /* bring in normalize.css styles */
@@ -34,11 +34,8 @@ code {
 const AppWrapper = styled.div`
   display: grid;
   grid-template: 1fr 3rem / 100%;
-  // grid-template-areas: "header"
-  //                      "boards"
-  //                      "footer"
   height: 100vh;
-  background: ${colors.gray30}; // linear-gradient(${colors.gray40}, ${colors.gray30});
+  // background: ${colors.gray30};
 `;
 
 const theme = {
@@ -101,6 +98,16 @@ const BoardsContainer = styled.div`
   `};
 `;
 
+const StyledParticles = styled(Particles)`
+  position: absolute;
+  padding: 4rem 0 3rem;
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  background: ${colors.gray30};
+  z-index: -1;
+`;
+
 const StyledBoard = styled(Board)`
   margin: 1rem;
   ${media.desktop`
@@ -117,9 +124,39 @@ export const Game: React.FC<{}> = () => {
       <StylesProvider injectFirst>
         <ThemeProvider theme={theme}>
           <MuiThemeProvider theme={muiTheme}>
+            <StyledParticles
+              params={{
+                particles: {
+                  number: {
+                    value: 100,
+                    density: {
+                      enable: false
+                    }
+                  },
+                  color: { value: colors.blue70 },
+                  shape: {
+                    type: 'circle'
+                  },
+                  size: {
+                    value: 5,
+                    random: true,
+                    anim: {
+                      speed: 4,
+                      size_min: 0.3
+                    }
+                  },
+                  line_linked: {
+                    enable: false
+                  },
+                  move: {
+                    enable: true,
+                    speed: 1,
+                    random: true
+                  }
+                }
+              }}
+            />
             <Header />
-            {/*<Spinner style={{ margin: '15rem auto 0' }} />*/}
-
             <BoardsContainer>
               <StyledBoard />
               <StyledBoard />
