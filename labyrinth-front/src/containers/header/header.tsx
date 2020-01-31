@@ -5,7 +5,7 @@ import { IconButton, List, SwipeableDrawer, ListItem, ListItemIcon, ListItemText
 import MenuIcon from '@material-ui/icons/Menu';
 import MailIcon from '@material-ui/icons/Mail';
 
-import { colors, transition } from 'utils';
+import {colors, transition, zIndexes} from 'utils';
 import { LogoSVG, InnerPath, OuterPath, Aside } from 'components';
 
 const StyledLogoSVG = styled(LogoSVG)`
@@ -47,6 +47,7 @@ const HeaderContainer = styled.div`
   box-shadow: 0 2px 2px 3px ${colors.gray20};
   width: 100%;
   font-weight: bold;
+  z-index: ${zIndexes.header};
 
   &:hover {
     & ${HeaderTitle}::before, & ${HeaderTitle}::after {

@@ -32,7 +32,9 @@ export const sizes: { mobile: number; tablet: number; desktop: number } = {
 
 export const zIndexes = {
   wall: 1,
-  innerHexagon: 2
+  innerHexagon: 2,
+  header: 5,
+  footer: 5
 };
 
 export const transition = { average: '0.3s', long: '2s' };

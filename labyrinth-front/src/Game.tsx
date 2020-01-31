@@ -32,9 +32,11 @@ code {
 
 // TODO: change to this layout: https://habr.com/ru/post/479580/
 const AppWrapper = styled.div`
+  position:relative;
   display: grid;
   grid-template: 1fr 3rem / 100%;
-  height: 100vh;
+  height: 100%;
+  min-height: 100vh;
   // background: ${colors.gray30};
 `;
 

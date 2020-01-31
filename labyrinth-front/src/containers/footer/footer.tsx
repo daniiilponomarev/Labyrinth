@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import { colors } from 'utils';
+import {colors, zIndexes} from 'utils';
 
 const FooterContainer = styled.div`
   display: flex;
@@ -14,6 +14,7 @@ const FooterContainer = styled.div`
   box-shadow: 0 -2px 2px 3px ${colors.gray20};
   width: 100%;
   font-weight: bold;
+  z-index: ${zIndexes.footer};
 `;
 
 export const Footer: React.FC<any> = () => {
