@@ -65,66 +65,106 @@ const StyledWall = styled.div<{ size: number; side: string }>`
   position: absolute;
   transition: background ${transition.average};
   z-index: ${zIndexes.wall};
-  ${({ size, side }) =>
-    side === positions.top || side === positions.bottom
-      ? `
+  ${({ size, side }) => {
+    let style = '';
+
+    switch (side) {
+      case positions.top:
+      case positions.bottom: {
+        style = `
+          margin: 0 ${100 / 8}%;
+          ${side === positions.top ? `top: -${100 / 8}%;` : `bottom: -${100 / 8}%;`}
+          width: ${100 * (6 / 8)}%;
+          height: ${100 / 4}%;
+        `;
+        break;
+      }
+      case positions.left: {
+        style = `
+          margin: ${100 / 8}% 0;
+          left: -${100 / 8}%;
+          width: ${100 / 4}%;
+          height: ${100 * (6 / 8)}%;
+        `;
+        break;
+      }
+      case positions.right: {
+        style = `
+          margin: ${100 / 10 / 8}% 0;
+          right: -${100 / 10 / 8}%;
+          width: ${100 / 10 / 4}%;
+          height: ${100 * (6 / 8)}%;
+        `;
+        break;
+      }
+    }
+    return style;
+  }};
+
+  @media (min-width: 550px) {
+    ${({ size, side }) =>
+      side === positions.top || side === positions.bottom
+        ? `
           margin: 0 ${size / 8}rem;
           ${side === positions.top ? `top: -${size / 8}rem;` : `bottom: -${size / 8}rem;`}
           width: ${size * (6 / 8)}rem;
           height: ${size / 4}rem;
         `
-      : `
+        : `
           margin: ${size / 8}rem 0;
           ${side === positions.left ? `left: -${size / 8}rem;` : `right: -${size / 8}rem;`}
           width: ${size / 4}rem;
           height: ${size * (6 / 8)}rem;
         `};
 
-  &::before,
-  &::after {
-    content: '';
-    width: 0;
-    height: 0;
-    position: absolute;
-    ${({ size, side }) =>
-      side === positions.top || side === positions.bottom
-        ? `
+    &::before,
+    &::after {
+      content: '';
+      width: 0;
+      height: 0;
+      position: absolute;
+      ${({ size, side }) =>
+        side === positions.top || side === positions.bottom
+          ? `
             border-top: ${size / 8}rem  solid transparent;
             border-bottom: ${size / 8}rem  solid transparent;
           `
-        : `
+          : `
             border-left: ${size / 8}rem  solid transparent;
             border-right: ${size / 8}rem  solid transparent;
           `};
-    transition: border ${transition.average};
-  }
-  &::before {
-    ${({ size, side }) =>
-      side === positions.top || side === positions.bottom
-        ? `
+      transition: border ${transition.average};
+    }
+    &::before {
+      ${({ size, side }) =>
+        side === positions.top || side === positions.bottom
+          ? `
             left: -${size / 8}rem;
             border-right: ${size / 8}rem  solid ${outerHexagonColor};
           `
-        : `
+          : `
             top: -${size / 8}rem;
             border-bottom: ${size / 8}rem  solid ${outerHexagonColor};
           `};
-  }
-  &::after {
-    ${({ size, side }) =>
-      side === positions.top || side === positions.bottom
-        ? `
+    }
+    &::after {
+      ${({ size, side }) =>
+        side === positions.top || side === positions.bottom
+          ? `
             right: -${size / 8}rem;
             border-left: ${size / 8}rem  solid ${outerHexagonColor};
           `
-        : `
+          : `
             bottom: -${size / 8}rem;
             border-top: ${size / 8}rem  solid ${outerHexagonColor};
           `};
+    }
   }
 `;
 
 const InnerHexagon = styled(StyledWall)`
+  width: 100%;
+  height: 100%;
   margin: 0;
   left: 0;
   top: 0;
@@ -132,27 +172,32 @@ const InnerHexagon = styled(StyledWall)`
   transform: scale(0.9);
   z-index: ${zIndexes.innerHexagon};
 
-  &::before {
-    z-index: ${zIndexes.innerHexagon};
-    ${({ size, side }) =>
-      side === positions.top || side === positions.bottom
-        ? `
+  @media (min-width: 550px) {
+    margin: 0;
+    left: 0;
+    top: 0;
+    &::before {
+      z-index: ${zIndexes.innerHexagon};
+      ${({ size, side }) =>
+        side === positions.top || side === positions.bottom
+          ? `
             border-right-color: ${innerHexagonColor};
           `
-        : `
+          : `
             border-bottom-color: ${innerHexagonColor};
           `};
-  }
-  &::after {
-    z-index: ${zIndexes.innerHexagon};
-    ${({ size, side }) =>
-      side === positions.top || side === positions.bottom
-        ? `
+    }
+    &::after {
+      z-index: ${zIndexes.innerHexagon};
+      ${({ size, side }) =>
+        side === positions.top || side === positions.bottom
+          ? `
             border-left-color: ${innerHexagonColor};
           `
-        : `
+          : `
             border-top-color: ${innerHexagonColor};
           `};
+    }
   }
 
   &:hover {

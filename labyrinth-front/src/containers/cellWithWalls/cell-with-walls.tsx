@@ -9,8 +9,7 @@ import { Cell } from '../cell';
 const CellWWallsContainer = styled.span`
   position: relative;
   display: inline-block;
-  // width: 10%;
-  width: 5rem;
+  width: 10%;
   height: 100%;
   max-width: 5rem;
   max-height: 5rem;
