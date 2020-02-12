@@ -5,7 +5,6 @@ import { colors } from 'utils';
 import { Wall } from '../../components/wall';
 import { Cell } from '../cell';
 
-// TODO: change to % instead of rems or pxs, remember about the walls
 const CellWWallsContainer = styled.span`
   position: relative;
   display: inline-block;

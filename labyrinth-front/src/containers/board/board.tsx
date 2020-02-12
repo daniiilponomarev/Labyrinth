@@ -47,7 +47,6 @@ export const Board: React.FC<any> = ({ className }) => {
       {addIndex(map)((cellsRow: any, rowIndex: number): any => {
         return (
           // maybe another key should be used
-          // TODO: check performance
           <BoardRow key={`row-${cellsRow[0]}`}>
             <Wall side="right" />
             {map((cell: number): any => {
