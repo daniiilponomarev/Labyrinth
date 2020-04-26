@@ -1,9 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import { colors } from 'utils';
-import { Wall } from '../../components/wall';
-import { Cell } from '../cell';
+import { Cell } from 'containers';
+import { Wall } from 'components';
 
 const CellWWallsContainer = styled.span`
   position: relative;
@@ -13,10 +12,6 @@ const CellWWallsContainer = styled.span`
   max-width: 5rem;
   max-height: 5rem;
   box-sizing: border-box;
-  
-  // background: linear-gradient(${colors.gray30}, ${colors.gray20});
-  // border-radius: 5px;
-  // border: 1px solid ${colors.gray50};
 `;
 
 export const CellWithWalls: React.FC<{ id: number }> = ({ id }) => {

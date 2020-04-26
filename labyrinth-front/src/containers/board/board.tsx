@@ -2,10 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 import { map, addIndex } from 'ramda';
 
-import { colors } from 'utils';
 import { CellWithWalls } from 'containers';
-import { Wall } from '../../components/wall';
-// import { CellWithWalls } from '../cellWithWalls';
+import { Wall } from 'components';
 
 const BoardContainer = styled.div<{ windowWidth: number }>`
   display: flex;
@@ -14,12 +12,8 @@ const BoardContainer = styled.div<{ windowWidth: number }>`
   width: 95%;
   height: ${props => `${props.windowWidth - 20}px`};
   max-width: 50rem;
-  // min-width: 50rem;
   max-height: 50rem;
-  // min-height: 50rem;
   border-radius: 5px;
-  //border: 1px solid ${colors.gray50};
-  // overflow: hidden;
 `;
 
 const BoardRow = styled.div`

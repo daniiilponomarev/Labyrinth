@@ -136,7 +136,7 @@ export const Game: React.FC<{}> = () => {
   return (
     <AppWrapper className="App">
       <GlobalStyle whiteColor={true} />
-      <StylesProvider injectFirst>
+      <StylesProvider injectFirst={true}>
         <ThemeProvider theme={theme}>
           <MuiThemeProvider theme={muiTheme}>
             <StyledParticles
