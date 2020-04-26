@@ -27,22 +27,21 @@ const FooterPart = styled.div`
   box-shadow: 0 -2px 2px 3px ${colors.gray20};
 `;
 
+const menuItems = ['New Game', 'Feedback', 'About'];
+
 export const Aside: React.FC<any> = (props: { isMenuOpened: boolean }) => {
   const [isMenuOpened, setIsMenuOpened] = React.useState(false);
 
-  useEffect(
-    () => {
-      setIsMenuOpened(props.isMenuOpened);
+  useEffect(() => {
+    setIsMenuOpened(props.isMenuOpened);
 
-      return function cleanup() {
-        setIsMenuOpened(false);
-      };
-    },
-    [props.isMenuOpened]
-  );
+    return function cleanup() {
+      setIsMenuOpened(false);
+    };
+  }, [props.isMenuOpened]);
 
   const toggleDrawer: (isMenuOpened: boolean) => (event: any) => void = isMenuOpened => event => {
-    if (event && event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
+    if (event?.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
       return;
     }
 
@@ -55,8 +54,8 @@ export const Aside: React.FC<any> = (props: { isMenuOpened: boolean }) => {
         <HeaderPart />
         <StyledSideList role="presentation" onClick={toggleDrawer(false)} onKeyDown={toggleDrawer(false)}>
           <List>
-            {['New Game', 'Feedback', 'About'].map((text, index) => (
-              <ListItem button key={text}>
+            {menuItems.map((text, index) => (
+              <ListItem button={true} key={index}>
                 <ListItemIcon>
                   <MailIcon />
                 </ListItemIcon>

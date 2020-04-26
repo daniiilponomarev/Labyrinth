@@ -1,11 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
-import { motion } from 'framer-motion';
-import { IconButton, List, SwipeableDrawer, ListItem, ListItemIcon, ListItemText } from '@material-ui/core';
+import { IconButton } from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
-import MailIcon from '@material-ui/icons/Mail';
 
-import {colors, transition, zIndexes} from 'utils';
+import { colors, transition, zIndexes } from 'utils';
 import { LogoSVG, InnerPath, OuterPath, Aside } from 'components';
 
 const StyledLogoSVG = styled(LogoSVG)`
@@ -79,27 +77,6 @@ const HeaderTitleContainer = styled.div`
   margin-right: 4rem;
 `;
 
-const DragContainer = styled.div`
-  //display: flex;
-  //align-items: center;
-  position: absolute;
-  top: 1rem;
-  left: 1rem;
-  height: 100%;
-  border-radius: 5px;
-  width: 40rem;
-  background: ${colors.blue90};
-`;
-
-const DragSquare = styled(motion.div)`
-    border-radius: 15px;
-    height: 100%;
-    margin: auto;
-    width: 10rem;
-    background: ${colors.blue30};
-  }
-`;
-
 export const Header: React.FC<any> = () => {
   const [isMenuOpened, setIsMenuOpened] = React.useState(false);
 
@@ -108,28 +85,7 @@ export const Header: React.FC<any> = () => {
   };
 
   return (
-    // <HeaderContainer onClick={toggleDrawer(!isMenuOpened)}>
     <HeaderContainer onClick={toggleMenu(!isMenuOpened)}>
-      {/*<DragContainer>*/}
-      {/*  <DragSquare*/}
-      {/*    className="square"*/}
-      {/*    whileHover={{ scale: 1.05 }}*/}
-      {/*    drag="x"*/}
-      {/*    dragConstraints={{ left: -150, right: 150 }}*/}
-      {/*    dragElastic={0.1}*/}
-      {/*  />*/}
-      {/*</DragContainer>*/}
-
-      {/*<AppBar position="static">*/}
-      {/*  <Toolbar>*/}
-      {/*    <IconButton edge="start" color="inherit" aria-label="menu">*/}
-      {/*      <MenuIcon />*/}
-      {/*    </IconButton>*/}
-      {/*    <Typography variant="h6">News</Typography>*/}
-      {/*    <Button color="inherit">Login</Button>*/}
-      {/*  </Toolbar>*/}
-      {/*</AppBar>*/}
-
       <HeaderMenuButton aria-label="menu">
         <MenuIcon />
       </HeaderMenuButton>
