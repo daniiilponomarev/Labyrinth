@@ -4,6 +4,7 @@ import { map, addIndex } from 'ramda';
 
 import { CellWithWalls } from 'containers';
 import { Wall } from 'components';
+import { generateWallId } from 'utils';
 
 const BoardContainer = styled.div<{ windowWidth: number }>`
   display: flex;
@@ -26,24 +27,28 @@ export const Board: React.FC<any> = ({ className }) => {
   // const windowWidth1 = size.width;
   const windowWidth = typeof window === 'object' ? window.innerWidth : undefined;
 
-  const cells: number[][] = [];
+  const cells: string[][] = [];
   let cellId = 0;
 
   for (let i = 0; i < 10; i++) {
     cells[i] = Array(10);
     for (let j = 0; j < 10; j++) {
-      cells[i][j] = cellId++;
+      cells[i][j] = cellId++ + '';
     }
   }
 
   return (
     <BoardContainer windowWidth={windowWidth || 0} className={className}>
-      {addIndex(map)((cellsRow: any, rowIndex: number): any => {
+      {addIndex(map)((cellsRow: any): any => {
         return (
-          // maybe another key should be used
           <BoardRow key={`row-${cellsRow[0]}`}>
-            <Wall side="right" isActive={Math.random() >= 0.5} isEnabled={Math.random() >= 0.5} />
-            {map((cell: number): any => {
+            <Wall
+              id={generateWallId(cellsRow[cellsRow.length - 1], 'right')}
+              side="right"
+              isActive={Math.random() >= 0.5}
+              isEnabled={Math.random() >= 0.5}
+            />
+            {map((cell: string): any => {
               return <CellWithWalls id={cell} key={`cell-${cell}`} />;
               // return (
               //   <span key={`cell-${cell}`}>

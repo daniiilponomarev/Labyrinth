@@ -24,6 +24,14 @@ export const colors = {
   white: '#f5f5f5'
 };
 
+export const outerHexagonColor = 'transparent';
+export const outerHexagonDisabledColor = colors.blue70;
+export const innerHexagonActiveEnabledColor = colors.blue70;
+export const innerHexagonInactiveEnabledColor = colors.blue90;
+export const innerHexagonActiveDisabledColor = 'transparent';
+export const innerHexagonInactiveDisabledColor = 'transparent';
+export const innerHexagonHoverColor = colors.blue50;
+
 export const sizes: { mobile: number; tablet: number; desktop: number } = {
   mobile: 32,
   tablet: 52,

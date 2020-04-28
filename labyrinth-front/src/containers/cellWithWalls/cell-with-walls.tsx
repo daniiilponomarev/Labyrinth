@@ -3,6 +3,7 @@ import styled from 'styled-components';
 
 import { Cell } from 'containers';
 import { Wall } from 'components';
+import { generateWallId } from 'utils';
 
 const CellWWallsContainer = styled.span`
   position: relative;
@@ -14,13 +15,30 @@ const CellWWallsContainer = styled.span`
   box-sizing: border-box;
 `;
 
-export const CellWithWalls: React.FC<{ id: number }> = ({ id }) => {
+export const CellWithWalls: React.FC<{ id: string }> = ({ id }) => {
   return (
     <CellWWallsContainer>
-      <Wall side="left" isActive={Math.random() >= 0.5} isEnabled={Math.random() >= 0.5} />
-      <Wall side="top" isActive={Math.random() >= 0.5} isEnabled={Math.random() >= 0.5} />
+      <Wall
+        id={generateWallId(id, 'left')}
+        side="left"
+        isActive={Math.random() >= 0.5}
+        isEnabled={Math.random() >= 0.5}
+      />
+      <Wall
+        id={generateWallId(id, 'top')}
+        side="top"
+        isActive={Math.random() >= 0.5}
+        isEnabled={Math.random() >= 0.5}
+      />
       <Cell id={`cell-${id}`} />
-      {id >= 90 ? <Wall side="bottom" isActive={Math.random() >= 0.5} isEnabled={Math.random() >= 0.5} /> : null}
+      {+id >= 90 ? (
+        <Wall
+          id={generateWallId(id, 'bottom')}
+          side="bottom"
+          isActive={Math.random() >= 0.5}
+          isEnabled={Math.random() >= 0.5}
+        />
+      ) : null}
     </CellWWallsContainer>
   );
 };

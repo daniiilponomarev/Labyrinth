@@ -1,16 +1,16 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { colors, transition, zIndexes, positions } from 'utils';
-
-const outerHexagonColor = 'transparent';
-// const outerHexagonDisabledColor = colors.blue70;
-const innerHexagonActiveEnabledColor = colors.blue70;
-const innerHexagonInactiveEnabledColor = colors.blue90;
-const innerHexagonActiveDisabledColor = 'transparent';
-const innerHexagonInactiveDisabledColor = 'transparent';
-const innerHexagonHoverColor = colors.blue50;
+import {
+  transition,
+  zIndexes,
+  positions,
+  outerHexagonColor,
+  innerHexagonHoverColor,
+  defineInnerFillColor
+} from 'utils';
 
 interface IWall {
+  id: string;
   className?: string;
   side: string;
   size?: number;
@@ -24,28 +24,13 @@ interface IWall {
 interface ISVGWall {
   className?: string;
   wallProps: {
+    side: string;
     size?: number;
     isActive?: boolean;
     isEnabledWall?: boolean;
     onClick?: () => void;
   };
 }
-
-const defineInnerFillColor = (isActive?: boolean, isEnabled?: boolean) => {
-  if (isActive && isEnabled) {
-    return innerHexagonActiveEnabledColor;
-  }
-
-  if (isActive && !isEnabled) {
-    return innerHexagonActiveDisabledColor;
-  }
-
-  if (!isActive && isEnabled) {
-    return innerHexagonInactiveEnabledColor;
-  } else {
-    return innerHexagonInactiveDisabledColor;
-  }
-};
 
 const VerticalWallSVG: React.FC<ISVGWall> = ({ className, wallProps }) => {
   const { size = 50, onClick, isActive, isEnabledWall } = wallProps;
@@ -77,7 +62,7 @@ const VerticalWallSVG: React.FC<ISVGWall> = ({ className, wallProps }) => {
   );
 };
 
-const StyledVerticalWall = styled(VerticalWallSVG)<{ wallProps: IWall }>`
+const StyledVerticalWall = styled(VerticalWallSVG)<ISVGWall>`
   position: absolute;
   fill: ${outerHexagonColor};
   z-index: ${zIndexes.wall};
@@ -130,7 +115,7 @@ const HorizontalWallSVG: React.FC<ISVGWall> = ({ className, wallProps }) => {
   );
 };
 
-const StyledHorizontalWall = styled(HorizontalWallSVG)<{ wallProps: IWall }>`
+const StyledHorizontalWall = styled(HorizontalWallSVG)<ISVGWall>`
   position: absolute;
   fill: ${outerHexagonColor};
   z-index: ${zIndexes.wall};
@@ -155,7 +140,7 @@ const StyledHorizontalWall = styled(HorizontalWallSVG)<{ wallProps: IWall }>`
   }
 `;
 
-export const Wall: React.FC<IWall> = ({ side, size = 50, isActive = true, isEnabled = true }) => {
+export const Wall: React.FC<IWall> = ({ id, side, size = 50, isActive = true, isEnabled = true }) => {
   const [isEnabledWall, setIsEnabledWall] = useState(isEnabled);
   const onClick = () => {
     setIsEnabledWall(!isEnabledWall);
