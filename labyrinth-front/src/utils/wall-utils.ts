@@ -1,13 +1,11 @@
-import { css } from 'styled-components';
 import {
-  sizes,
-  outerHexagonColor,
-  outerHexagonDisabledColor,
+  // outerHexagonColor,
+  // outerHexagonDisabledColor,
   innerHexagonActiveEnabledColor,
   innerHexagonInactiveEnabledColor,
   innerHexagonActiveDisabledColor,
-  innerHexagonInactiveDisabledColor,
-  innerHexagonHoverColor
+  innerHexagonInactiveDisabledColor
+  // innerHexagonHoverColor
 } from './css-constants';
 
 export const defineInnerFillColor = (isActive?: boolean, isEnabled?: boolean) => {

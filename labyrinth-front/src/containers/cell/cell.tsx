@@ -9,6 +9,7 @@ const CellContainer = styled.span`
   height: 100%;
   background: ${colors.blue0};
   border-radius: 25%;
+  border: 1px solid ${colors.blue90};
   transition: background ${transition.average};
 
   &:hover {
