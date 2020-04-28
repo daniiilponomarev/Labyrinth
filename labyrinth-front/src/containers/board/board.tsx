@@ -42,7 +42,7 @@ export const Board: React.FC<any> = ({ className }) => {
         return (
           // maybe another key should be used
           <BoardRow key={`row-${cellsRow[0]}`}>
-            <Wall side="right" />
+            <Wall side="right" isActive={Math.random() >= 0.5} isEnabled={Math.random() >= 0.5} />
             {map((cell: number): any => {
               return <CellWithWalls id={cell} key={`cell-${cell}`} />;
               // return (

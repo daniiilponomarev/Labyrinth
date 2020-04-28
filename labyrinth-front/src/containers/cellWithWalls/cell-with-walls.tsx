@@ -17,10 +17,10 @@ const CellWWallsContainer = styled.span`
 export const CellWithWalls: React.FC<{ id: number }> = ({ id }) => {
   return (
     <CellWWallsContainer>
-      <Wall side="left" />
-      <Wall side="top" />
+      <Wall side="left" isActive={Math.random() >= 0.5} isEnabled={Math.random() >= 0.5} />
+      <Wall side="top" isActive={Math.random() >= 0.5} isEnabled={Math.random() >= 0.5} />
       <Cell id={`cell-${id}`} />
-      {id >= 90 ? <Wall side="bottom" /> : null}
+      {id >= 90 ? <Wall side="bottom" isActive={Math.random() >= 0.5} isEnabled={Math.random() >= 0.5} /> : null}
     </CellWWallsContainer>
   );
 };

@@ -8,8 +8,6 @@ import { colors, sizes, media } from 'utils';
 import { Board, Header, Footer } from 'containers';
 
 const GlobalStyle: any = createGlobalStyle`
-@import-normalize; /* bring in normalize.css styles */
-
 html {
   /* 1rem = 10px */
   font-size: 62.5%;
