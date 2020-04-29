@@ -1,10 +1,10 @@
 import React from 'react';
-import styled from 'styled-components';
-import { map, addIndex } from 'ramda';
+import styled from 'styled-components/macro';
+import { map } from 'ramda';
 
 import { CellWithWalls } from 'containers';
 import { Wall } from 'components';
-import { generateWallId } from 'utils';
+import { CellContent, generateWallId, ICell } from 'utils';
 
 const BoardContainer = styled.div<{ windowWidth: number }>`
   display: flex;
@@ -27,29 +27,29 @@ export const Board: React.FC<any> = ({ className }) => {
   // const windowWidth1 = size.width;
   const windowWidth = typeof window === 'object' ? window.innerWidth : undefined;
 
-  const cells: string[][] = [];
+  const cells: ICell[][] = [];
   let cellId = 0;
 
   for (let i = 0; i < 10; i++) {
     cells[i] = Array(10);
     for (let j = 0; j < 10; j++) {
-      cells[i][j] = cellId++ + '';
+      cells[i][j] = { id: cellId++ + '', content: CellContent.HermesBoots };
     }
   }
 
   return (
     <BoardContainer windowWidth={windowWidth || 0} className={className}>
-      {addIndex(map)((cellsRow: any): any => {
+      {map((cellsRow: ICell[]): JSX.Element => {
         return (
-          <BoardRow key={`row-${cellsRow[0]}`}>
+          <BoardRow key={`row-${cellsRow[0].id}`}>
             <Wall
-              id={generateWallId(cellsRow[cellsRow.length - 1], 'right')}
+              id={generateWallId(cellsRow[cellsRow.length - 1].id, 'right')}
               side="right"
               isActive={Math.random() >= 0.5}
               isEnabled={Math.random() >= 0.5}
             />
-            {map((cell: string): any => {
-              return <CellWithWalls id={cell} key={`cell-${cell}`} />;
+            {map((cell: ICell): any => {
+              return <CellWithWalls cell={cell} key={`cell-${cell.id}`} />;
               // return (
               //   <span key={`cell-${cell}`}>
               //     <Wall side="left" />

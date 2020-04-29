@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 import { Cell } from 'containers';
 import { Wall } from 'components';
-import { generateWallId } from 'utils';
+import { generateWallId, ICell } from 'utils';
 
 const CellWWallsContainer = styled.span`
   position: relative;
@@ -15,7 +15,9 @@ const CellWWallsContainer = styled.span`
   box-sizing: border-box;
 `;
 
-export const CellWithWalls: React.FC<{ id: string }> = ({ id }) => {
+export const CellWithWalls: React.FC<{ cell: ICell }> = ({ cell }) => {
+  const { id } = cell;
+
   return (
     <CellWWallsContainer>
       <Wall
