@@ -21,6 +21,12 @@ export const colors = {
   gray80: '#3f3f3f',
   gray90: '#0d0d0d',
 
+  brown40: '#A66342',
+  brown50: '#995B3D',
+
+  gold40: '#F9BC35',
+  gold50: '#F39E31',
+
   white: '#f5f5f5'
 };
 

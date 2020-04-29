@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import { colors, transition } from 'utils';
+import { CellContentEnum, colors, getContentIcon, ICell, transition } from 'utils';
 
 const CellContainer = styled.span`
   display: inline-block;
@@ -10,6 +10,7 @@ const CellContainer = styled.span`
   background: ${colors.blue0};
   border-radius: 25%;
   border: 1px solid ${colors.blue90};
+  text-align: center;
   transition: background ${transition.average};
 
   &:hover {
@@ -17,6 +18,17 @@ const CellContainer = styled.span`
   }
 `;
 
-export const Cell: React.FC<{ id: string }> = ({ id }) => {
-  return <CellContainer>{/*{id}*/}</CellContainer>;
+const ContentContainer = styled.img`
+  width: 50%;
+  height: 100%;
+`;
+
+export const Cell: React.FC<{ cell: ICell }> = ({ cell }) => {
+  return (
+    <CellContainer>
+      {cell.content !== CellContentEnum.Empty && (
+        <ContentContainer src={getContentIcon(cell.content)} alt="Treasure" width={50} />
+      )}
+    </CellContainer>
+  );
 };

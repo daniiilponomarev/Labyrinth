@@ -32,7 +32,7 @@ export const CellWithWalls: React.FC<{ cell: ICell }> = ({ cell }) => {
         isActive={Math.random() >= 0.5}
         isEnabled={Math.random() >= 0.5}
       />
-      <Cell id={`cell-${id}`} />
+      <Cell cell={cell} />
       {+id >= 90 ? (
         <Wall
           id={generateWallId(id, 'bottom')}

@@ -4,7 +4,7 @@ import { map } from 'ramda';
 
 import { CellWithWalls } from 'containers';
 import { Wall } from 'components';
-import { CellContent, generateWallId, ICell } from 'utils';
+import { CellContentEnum, generateWallId, ICell } from 'utils';
 
 const BoardContainer = styled.div<{ windowWidth: number }>`
   display: flex;
@@ -30,10 +30,18 @@ export const Board: React.FC<any> = ({ className }) => {
   const cells: ICell[][] = [];
   let cellId = 0;
 
+  const enumValues = (Object.values(CellContentEnum) as unknown) as any[];
+  const enumValuesWithWeight = new Array(50).fill(enumValues[0]).concat(enumValues);
+
+  function randomEnum<T>(): T[keyof T] {
+    const randomIndex = Math.floor(Math.random() * enumValuesWithWeight.length);
+    return enumValuesWithWeight[randomIndex];
+  }
+
   for (let i = 0; i < 10; i++) {
     cells[i] = Array(10);
     for (let j = 0; j < 10; j++) {
-      cells[i][j] = { id: cellId++ + '', content: CellContent.HermesBoots };
+      cells[i][j] = { id: cellId++ + '', content: randomEnum() };
     }
   }
 
