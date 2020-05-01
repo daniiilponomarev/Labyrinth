@@ -4,6 +4,8 @@ import ClosedTreasure from 'assets/icons/closedTreasure.svg';
 import Crossbow from 'assets/icons/crossbow.svg';
 import HermesBoots from 'assets/icons/hermesBoots.svg';
 import Trap from 'assets/icons/trap.svg';
+import CaveEntry from 'assets/icons/caveEntry.svg';
+import CaveExit from 'assets/icons/caveExit.svg';
 
 export interface ICell {
   id: string;
@@ -15,14 +17,14 @@ export enum CellContentEnum {
   Crossbow = 'CROSSBOW',
   HermesBoots = 'HERMES_BOOTS',
   Trap = 'TRAP',
-  // PitEntry1 = 'PIT_ENTRY_1',
-  // PitEntry2 = 'PIT_ENTRY_2',
-  // PitEntry3 = 'PIT_ENTRY_3',
-  // PitEntry4 = 'PIT_ENTRY_4',
-  // PitExit1 = 'PIT_EXIT_1',
-  // PitExit2 = 'PIT_EXIT_2',
-  // PitExit3 = 'PIT_EXIT_3',
-  // PitExit4 = 'PIT_EXIT_4',
+  CaveEntry1 = 'CAVE_ENTRY_1',
+  CaveEntry2 = 'CAVE_ENTRY_2',
+  CaveEntry3 = 'CAVE_ENTRY_3',
+  CaveEntry4 = 'CAVE_ENTRY_4',
+  CaveExit1 = 'CAVE_EXIT_1',
+  CaveExit2 = 'CAVE_EXIT_2',
+  CaveExit3 = 'CAVE_EXIT_3',
+  CaveExit4 = 'CAVE_EXIT_4',
   Treasure = 'TREASURE',
   FalseTreasure1 = 'FALSE_TREASURE_1',
   FalseTreasure2 = 'FALSE_TREASURE_2',
@@ -52,5 +54,15 @@ export const getContentIcon = (content: string) => {
       return HermesBoots;
     case CellContentEnum.Trap:
       return Trap;
+    case CellContentEnum.CaveEntry1:
+    case CellContentEnum.CaveEntry2:
+    case CellContentEnum.CaveEntry3:
+    case CellContentEnum.CaveEntry4:
+      return CaveEntry;
+    case CellContentEnum.CaveExit1:
+    case CellContentEnum.CaveExit2:
+    case CellContentEnum.CaveExit3:
+    case CellContentEnum.CaveExit4:
+      return CaveExit;
   }
 };
