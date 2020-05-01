@@ -1,6 +1,9 @@
 import Treasure from 'assets/icons/treasure.svg';
 import FalseTreasure from 'assets/icons/falseTreasure.svg';
 import ClosedTreasure from 'assets/icons/closedTreasure.svg';
+import Crossbow from 'assets/icons/crossbow.svg';
+import HermesBoots from 'assets/icons/hermesBoots.svg';
+import Trap from 'assets/icons/trap.svg';
 
 export interface ICell {
   id: string;
@@ -9,9 +12,9 @@ export interface ICell {
 
 export enum CellContentEnum {
   Empty = 'EMPTY',
-  // Crossbow = 'CROSSBOW',
-  // HermesBoots = 'HERMES_BOOTS',
-  // Trap = 'TRAP',
+  Crossbow = 'CROSSBOW',
+  HermesBoots = 'HERMES_BOOTS',
+  Trap = 'TRAP',
   // PitEntry1 = 'PIT_ENTRY_1',
   // PitEntry2 = 'PIT_ENTRY_2',
   // PitEntry3 = 'PIT_ENTRY_3',
@@ -43,5 +46,11 @@ export const getContentIcon = (content: string) => {
     case CellContentEnum.ClosedTreasure3:
     case CellContentEnum.ClosedTreasure4:
       return ClosedTreasure;
+    case CellContentEnum.Crossbow:
+      return Crossbow;
+    case CellContentEnum.HermesBoots:
+      return HermesBoots;
+    case CellContentEnum.Trap:
+      return Trap;
   }
 };
