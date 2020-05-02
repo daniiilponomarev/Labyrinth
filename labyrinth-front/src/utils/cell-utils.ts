@@ -6,6 +6,7 @@ import HermesBoots from 'assets/icons/hermesBoots.svg';
 import Trap from 'assets/icons/trap.svg';
 import CaveEntry from 'assets/icons/caveEntry.svg';
 import CaveExit from 'assets/icons/caveExit.svg';
+import Player from 'assets/icons/player.svg';
 
 export interface ICell {
   id: string;
@@ -32,7 +33,8 @@ export enum CellContentEnum {
   ClosedTreasure1 = 'CLOSED_TREASURE_1',
   ClosedTreasure2 = 'CLOSED_TREASURE_2',
   ClosedTreasure3 = 'CLOSED_TREASURE_3',
-  ClosedTreasure4 = 'CLOSED_TREASURE_4'
+  ClosedTreasure4 = 'CLOSED_TREASURE_4',
+  Player = 'Player'
 }
 
 export const getContentIcon = (content: string) => {
@@ -64,5 +66,7 @@ export const getContentIcon = (content: string) => {
     case CellContentEnum.CaveExit3:
     case CellContentEnum.CaveExit4:
       return CaveExit;
+    case CellContentEnum.Player:
+      return Player;
   }
 };
