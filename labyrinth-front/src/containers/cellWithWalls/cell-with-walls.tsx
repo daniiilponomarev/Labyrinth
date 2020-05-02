@@ -1,33 +1,46 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import { colors } from 'utils';
-import { Wall } from '../../components/wall';
-import { Cell } from '../cell';
+import { Cell } from 'containers';
+import { Wall } from 'components';
+import { generateWallId, ICell } from 'utils';
 
-// TODO: change to % instead of rems or pxs, remember about the walls
 const CellWWallsContainer = styled.span`
   position: relative;
   display: inline-block;
-  // width: 10%;
-  width: 5rem;
+  width: 10%;
   height: 100%;
   max-width: 5rem;
   max-height: 5rem;
   box-sizing: border-box;
-  
-  // background: linear-gradient(${colors.gray30}, ${colors.gray20});
-  // border-radius: 5px;
-  // border: 1px solid ${colors.gray50};
 `;
 
-export const CellWithWalls: React.FC<{ id: number }> = ({ id }) => {
+export const CellWithWalls: React.FC<{ cell: ICell }> = ({ cell }) => {
+  const { id } = cell;
+
   return (
     <CellWWallsContainer>
-      <Wall side="left" />
-      <Wall side="top" />
-      <Cell id={`cell-${id}`} />
-      {id >= 90 ? <Wall side="bottom" /> : null}
+      <Wall
+        id={generateWallId(id, 'left')}
+        side="left"
+        isActive={Math.random() >= 0.5}
+        isEnabled={Math.random() >= 0.5}
+      />
+      <Wall
+        id={generateWallId(id, 'top')}
+        side="top"
+        isActive={Math.random() >= 0.5}
+        isEnabled={Math.random() >= 0.5}
+      />
+      <Cell cell={cell} />
+      {+id >= 90 ? (
+        <Wall
+          id={generateWallId(id, 'bottom')}
+          side="bottom"
+          isActive={Math.random() >= 0.5}
+          isEnabled={Math.random() >= 0.5}
+        />
+      ) : null}
     </CellWWallsContainer>
   );
 };

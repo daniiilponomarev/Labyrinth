@@ -1,234 +1,159 @@
-// import React from 'react';
-// import styled from 'styled-components';
-// import { colors } from 'utils';
-//
-// const wall = ({ className, size = 50, onClick }: { className?: string; size?: number; onClick?: () => any }) => {
-//   const d1 = `M ${size / 4 / 2} 0
-//          L ${size / 4} ${size * (1 / 8)}
-//          L ${size / 4} ${size * (7 / 8)}
-//          L ${size / 4 / 2} ${size}
-//          Z`;
-//   const d2 = `M ${size / 4 / 2} ${size}
-//          L 0 ${size * (7 / 8)}
-//          L 0 ${size * (1 / 8)}
-//          L ${size / 4 / 2} 0
-//          Z`;
-//
-//   return (
-//     <svg className={className} viewBox={`0 0 ${size / 4} ${size}`} xmlns="http://www.w3.org/2000/svg" height={size}>
-//       <path d={d1} />
-//       <path d={d2} />
-//     </svg>
-//   );
-// };
-//
-// const StyledWall = styled(wall)`
-//   position: absolute;
-//   fill: ${colors.blue90};
-// `;
-//
-// const TopWall = styled(StyledWall)`
-//   position: absolute;
-//   width: 100%;
-//   height: 1.5rem;
-//   background: red;
-// `;
-//
-// export const Wall = ({ side }: { side: string }) => {
-//   return <StyledWall />;
-//
-//   switch (side) {
-//     case 'top': {
-//       return <TopWall />;
-//     }
-//     case 'bottom': {
-//       return <StyledWall />;
-//     }
-//     default:
-//       return null;
-//   }
-// };
+import React, { useState } from 'react';
+import styled from 'styled-components';
+import {
+  transition,
+  zIndexes,
+  positions,
+  outerHexagonColor,
+  innerHexagonHoverColor,
+  defineInnerFillColor
+} from 'utils';
 
-import React from 'react';
-import styled, { StyledComponent } from 'styled-components';
-import { colors, transition, zIndexes, positions } from 'utils';
+interface IWall {
+  id: string;
+  className?: string;
+  side: string;
+  size?: number;
+  isActive?: boolean;
+  isEnabled?: boolean;
+  isEnabledWall?: boolean;
+  randomColor?: string;
+  onClick?: () => void;
+}
 
-const StyledWall: StyledComponent<any, any> = styled.div`
-  background: ${colors.blue0};
+interface ISVGWall {
+  className?: string;
+  wallProps: {
+    side: string;
+    size?: number;
+    isActive?: boolean;
+    isEnabledWall?: boolean;
+    onClick?: () => void;
+  };
+}
+
+const VerticalWallSVG: React.FC<ISVGWall> = ({ className, wallProps }) => {
+  const { size = 50, onClick, isActive, isEnabledWall } = wallProps;
+
+  const innerCoefficient = 1;
+  const outerPath = `M ${size / 4 / 2} 0 L ${size / 4} ${size * (1 / 8)}
+         L ${size / 4} ${size * (7 / 8)} L ${size / 4 / 2} ${size}
+         L 0 ${size * (7 / 8)} L 0 ${size * (1 / 8)}
+         L ${size / 4 / 2} 0 Z`;
+  const innerPath = `M ${size / 4 / 2} ${innerCoefficient} L ${size / 4 - innerCoefficient} ${size * (1 / 8)}
+         L ${size / 4 - innerCoefficient} ${size * (7 / 8)} L ${size / 4 / 2} ${size - innerCoefficient}
+         L ${innerCoefficient} ${size * (7 / 8)} L ${innerCoefficient} ${size * (1 / 8)}
+         L ${size / 4 / 2} ${innerCoefficient} Z`;
+
+  const innerFillColor = defineInnerFillColor(isActive, isEnabledWall);
+
+  return (
+    <svg
+      className={className}
+      viewBox={`0 0 ${size / 4} ${size}`}
+      xmlns="http://www.w3.org/2000/svg"
+      height={size}
+      width={size}
+      onClick={onClick}
+    >
+      <path className="outer-path" d={outerPath} />
+      <path className="inner-path" d={innerPath} fill={innerFillColor} />
+    </svg>
+  );
+};
+
+const StyledVerticalWall = styled(VerticalWallSVG)<ISVGWall>`
   position: absolute;
-  transition: background ${transition.average};
+  fill: ${outerHexagonColor};
   z-index: ${zIndexes.wall};
-  ${({ size, side }: any) =>
-    side === positions.top || side === positions.bottom
-      ? `
-          margin: 0 ${size / 8}rem;
-          ${side === positions.top ? `top: -${size / 8}rem;` : `bottom: -${size / 8}rem;`}
-          width: ${size * (6 / 8)}rem;
-          height: ${size / 4}rem;
-        `
-      : `
-          margin: ${size / 8}rem 0;
-          ${side === positions.left ? `left: -${size / 8}rem;` : `right: -${size / 8}rem;`}
-          width: ${size / 4}rem;
-          height: ${size * (6 / 8)}rem;
-        `};
+  height: ${100}%;
+  ${({ wallProps }) =>
+    wallProps.side === positions.left
+      ? `left: -${100 / 8}%;
+         width: ${100 / 4}%;`
+      : `right: -${100 / 10 / 8}%;
+         width: ${100 / 10 / 4}%;`};
 
-  &::before,
-  &::after {
-    content: '';
-    width: 0;
-    height: 0;
-    position: absolute;
-    ${({ size, side }: any) =>
-      side === positions.top || side === positions.bottom
-        ? `
-            border-top: ${size / 8}rem  solid transparent;
-            border-bottom: ${size / 8}rem  solid transparent;
-          `
-        : `
-            border-left: ${size / 8}rem  solid transparent;
-            border-right: ${size / 8}rem  solid transparent;
-          `};
-    transition: border ${transition.average};
-  }
-  &::before {
-    ${({ size, side }: any) =>
-      side === positions.top || side === positions.bottom
-        ? `
-            left: -${size / 8}rem;
-            border-right: ${size / 8}rem  solid ${colors.blue0};
-          `
-        : `
-            top: -${size / 8}rem;
-            border-bottom: ${size / 8}rem  solid ${colors.blue0};
-          `};
-  }
-  &::after {
-    ${({ size, side }: any) =>
-      side === positions.top || side === positions.bottom
-        ? `
-            right: -${size / 8}rem;
-            border-left: ${size / 8}rem  solid ${colors.blue0};
-          `
-        : `
-            bottom: -${size / 8}rem;
-            border-top: ${size / 8}rem  solid ${colors.blue0};
-          `};
-  }
-`;
-
-const InnerHexagon = styled(StyledWall)`
-  margin: 0;
-  left: 0;
-  top: 0;
-  background: ${colors.blue90};
-  transform: scale(0.9);
-  z-index: ${zIndexes.innerHexagon};
-
-  &::before {
-    z-index: ${zIndexes.innerHexagon};
-    ${({ size, side }: any) =>
-      side === positions.top || side === positions.bottom
-        ? `
-            border-right-color: ${colors.blue90}};
-          `
-        : `
-            border-bottom-color: ${colors.blue90}};
-          `};
-  }
-  &::after {
-    z-index: ${zIndexes.innerHexagon};
-    ${({ size, side }: any) =>
-      side === positions.top || side === positions.bottom
-        ? `
-            border-left-color: ${colors.blue90}};
-          `
-        : `
-            border-top-color: ${colors.blue90}};
-          `};
+  & .inner-path {
+    transition: fill ${transition.average};
   }
 
   &:hover {
-    background: ${colors.blue50};
-    &::before {
-      ${({ side }: any) =>
-        side === positions.top || side === positions.bottom
-          ? `border-right-color: ${colors.blue50}`
-          : `border-bottom-color: ${colors.blue50};`}
-    }
-    &::after {
-      ${({ side }: any) =>
-        side === positions.top || side === positions.bottom
-          ? `border-left-color: ${colors.blue50}`
-          : `border-top-color: ${colors.blue50};`}
+    & .inner-path {
+      fill: ${innerHexagonHoverColor};
     }
   }
 `;
 
-const InnerHexagonOld = styled(StyledWall)`
-  margin: 0;
-  background: ${colors.blue90};
-  transform: scale(0.9);
-  z-index: ${zIndexes.innerHexagon};
+const HorizontalWallSVG: React.FC<ISVGWall> = ({ className, wallProps }) => {
+  const { size = 50, onClick, isActive, isEnabledWall } = wallProps;
 
-  &::before {
-    // border-bottom-color: ${colors.blue90}};
-  }
-  &::after {
-    // border-top-color: ${colors.blue90}};
+  const outerPath = `M 0 ${size / 4 / 2} L ${size * (1 / 8)} 0
+         L ${size * (7 / 8)} 0 L ${size} ${size * (1 / 8)}
+         L ${size * (7 / 8)} ${size / 4} L ${size * (1 / 8)} ${size / 4}
+         L 0 ${size / 4 / 2} Z`;
+  const innerCoefficient = 1;
+  const innerPath = `M ${innerCoefficient} ${size / 4 / 2} L ${size * (1 / 8)} ${innerCoefficient}
+         L ${size * (7 / 8)} ${innerCoefficient} L ${size - innerCoefficient} ${size * (1 / 8)}
+         L ${size * (7 / 8)} ${size / 4 - innerCoefficient} L ${size * (1 / 8)} ${size / 4 - innerCoefficient}
+         L ${innerCoefficient} ${size / 4 / 2} Z`;
+
+  const innerFillColor = defineInnerFillColor(isActive, isEnabledWall);
+
+  return (
+    <svg
+      className={className}
+      viewBox={`0 0 ${size} ${size / 4}`}
+      xmlns="http://www.w3.org/2000/svg"
+      height={size}
+      width={size}
+      onClick={onClick}
+    >
+      <path className="outer-path" d={outerPath} />
+      <path className="inner-path" d={innerPath} fill={innerFillColor} />
+    </svg>
+  );
+};
+
+const StyledHorizontalWall = styled(HorizontalWallSVG)<ISVGWall>`
+  position: absolute;
+  fill: ${outerHexagonColor};
+  z-index: ${zIndexes.wall};
+  ${({ wallProps }) =>
+    wallProps.side === positions.top
+      ? `top: -${100 / 4 / 2}%;
+         width: ${100}%;
+         height: ${100 / 4}%;`
+      : `left: 0;
+         bottom: -${100 / 4 / 2}%;
+         width: ${100}%;
+         height: ${100 / 4}%;`};
+
+  & .inner-path {
+    transition: fill ${transition.average};
   }
 
   &:hover {
-    background: ${colors.blue0};
-    &::before {
-      // border-bottom-color: ${colors.blue0};
-    }
-    &::after {
-      // border-top-color: ${colors.blue0};
+    & .inner-path {
+      fill: ${innerHexagonHoverColor};
     }
   }
 `;
 
-const LeftWall = styled(StyledWall)`
-  // left: -0.6rem;
-`;
+export const Wall: React.FC<IWall> = ({ id, side, size = 50, isActive = true, isEnabled = true }) => {
+  const [isEnabledWall, setIsEnabledWall] = useState(isEnabled);
+  const onClick = () => {
+    setIsEnabledWall(!isEnabledWall);
+  };
+  const wallProps = { side, size, isActive, isEnabledWall, onClick };
 
-const TopWall = styled(StyledWall)`
-  // transform: rotate(90deg);
-`;
-
-export const Wall = ({ side, size = 5 }: { side: string; size?: number }) => {
-  console.log('Wall', side);
-  switch (side) {
-    case 'top': {
-      return (
-        <StyledWall size={size} side={side}>
-          <InnerHexagon size={size} side={side} />
-        </StyledWall>
-      );
-    }
-    case 'bottom': {
-      return (
-        <StyledWall size={size} side={side}>
-          <InnerHexagon size={size} side={side} />
-        </StyledWall>
-      );
-    }
-    case 'left': {
-      return (
-        <StyledWall size={size} side={side}>
-          <InnerHexagon size={size} side={side} />
-        </StyledWall>
-      );
-    }
-    case 'right': {
-      return (
-        <StyledWall size={size} side={side}>
-          <InnerHexagon size={size} side={side} />
-        </StyledWall>
-      );
-    }
-    default:
-      return null;
-  }
+  return (
+    <>
+      {side === positions.left || side === positions.right ? (
+        <StyledVerticalWall wallProps={wallProps} />
+      ) : (
+        <StyledHorizontalWall wallProps={wallProps} />
+      )}
+    </>
+  );
 };

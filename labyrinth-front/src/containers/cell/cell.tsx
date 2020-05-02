@@ -1,27 +1,34 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import { colors, transition } from 'utils';
+import { CellContentEnum, colors, getContentIcon, ICell, transition } from 'utils';
 
-// TODO: change to % instead of rems or pxs, remember about the walls
 const CellContainer = styled.span`
   display: inline-block;
   width: 100%;
   height: 100%;
-  // background: linear-gradient(${colors.gray50}, ${colors.gray20});
-  
-  background: linear-gradient(${colors.blue10}, ${colors.blue0});
+  background: ${colors.blue0};
+  border-radius: 25%;
+  border: 1px solid ${colors.blue90};
+  text-align: center;
   transition: background ${transition.average};
 
   &:hover {
-    background: linear-gradient(${colors.blue0}, ${colors.blue10});
+    background: ${colors.blue10};
   }
 `;
 
-export const Cell: React.FC<{ id: string }> = ({ id }) => {
+const ContentContainer = styled.img`
+  width: 50%;
+  height: 100%;
+`;
+
+export const Cell: React.FC<{ cell: ICell }> = ({ cell }) => {
   return (
     <CellContainer>
-      {/*{id}*/}
+      {cell.content !== CellContentEnum.Empty && (
+        <ContentContainer src={getContentIcon(cell.content)} alt="Treasure" width={50} />
+      )}
     </CellContainer>
   );
 };

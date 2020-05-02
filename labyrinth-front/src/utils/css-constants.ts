@@ -21,8 +21,22 @@ export const colors = {
   gray80: '#3f3f3f',
   gray90: '#0d0d0d',
 
+  brown40: '#A66342',
+  brown50: '#995B3D',
+
+  gold40: '#F9BC35',
+  gold50: '#F39E31',
+
   white: '#f5f5f5'
 };
+
+export const outerHexagonColor = 'transparent';
+export const outerHexagonDisabledColor = colors.blue70;
+export const innerHexagonActiveEnabledColor = colors.blue70;
+export const innerHexagonInactiveEnabledColor = colors.blue90;
+export const innerHexagonActiveDisabledColor = 'transparent';
+export const innerHexagonInactiveDisabledColor = 'transparent';
+export const innerHexagonHoverColor = colors.blue50;
 
 export const sizes: { mobile: number; tablet: number; desktop: number } = {
   mobile: 32,
@@ -32,9 +46,11 @@ export const sizes: { mobile: number; tablet: number; desktop: number } = {
 
 export const zIndexes = {
   wall: 1,
-  innerHexagon: 2
+  innerHexagon: 2,
+  header: 5,
+  footer: 5
 };
 
-export const transition: { average: string } = { average: '0.3s' };
+export const transition = { average: '0.3s', long: '2s' };
 
 export const positions = { top: 'top', bottom: 'bottom', left: 'left', right: 'right' };
