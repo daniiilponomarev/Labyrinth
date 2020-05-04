@@ -1,10 +1,10 @@
 import React from 'react';
-import styled from 'styled-components/macro';
 import { map } from 'ramda';
+import styled from 'styled-components/macro';
 
 import { CellWithWalls } from 'containers';
 import { Wall } from 'components';
-import { CellContentEnum, generateWallId, ICell } from 'utils';
+import { CellContentArray, generateWallId, ICell } from 'utils';
 
 const BoardContainer = styled.div<{ windowWidth: number }>`
   display: flex;
@@ -30,18 +30,18 @@ export const Board: React.FC<any> = ({ className }) => {
   const cells: ICell[][] = [];
   let cellId = 0;
 
-  const enumValues = (Object.values(CellContentEnum) as unknown) as any[];
-  const enumValuesWithWeight = new Array(50).fill(enumValues[0]).concat(enumValues);
+  const enumContentValuesWithWeight = new Array(50).fill(CellContentArray[0]).concat(CellContentArray);
 
-  function randomEnum<T>(): T[keyof T] {
-    const randomIndex = Math.floor(Math.random() * enumValuesWithWeight.length);
-    return enumValuesWithWeight[randomIndex];
+  function randomEnum<T>(): { icon: T[keyof T]; text: T[keyof T] } {
+    const randomIndex = Math.floor(Math.random() * enumContentValuesWithWeight.length);
+    const randomContent = enumContentValuesWithWeight[randomIndex];
+    return { icon: randomContent.icon, text: randomContent.text };
   }
 
   for (let i = 0; i < 10; i++) {
     cells[i] = Array(10);
     for (let j = 0; j < 10; j++) {
-      cells[i][j] = { id: cellId++ + '', content: randomEnum() };
+      cells[i][j] = { id: cellId++ + '', contentIcon: randomEnum().icon, contentText: randomEnum().text };
     }
   }
 

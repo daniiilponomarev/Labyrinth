@@ -1,12 +1,18 @@
 import React from 'react';
 import styled from 'styled-components';
+import Menu from '@material-ui/core/Menu';
+import MenuItem from '@material-ui/core/MenuItem';
+import Button from '@material-ui/core/Button';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+import ListItemText from '@material-ui/core/ListItemText';
 
-import { CellContentEnum, colors, getContentIcon, ICell, transition } from 'utils';
+import { CellContentIconEnum, CellMenuArray, colors, getContentIcon, ICell, transition } from 'utils';
 
-const CellContainer = styled.span`
+const CellContainer = styled(Button)`
   display: inline-block;
   width: 100%;
   height: 100%;
+  padding: 0;
   background: ${colors.blue0};
   border-radius: 25%;
   border: 1px solid ${colors.blue90};
@@ -23,12 +29,61 @@ const ContentContainer = styled.img`
   height: 100%;
 `;
 
+const StyledMenuItem = styled(MenuItem)`
+  color: ${colors.blue90};
+  &:focus {
+    background: ${colors.blue10};
+  }
+`;
+
+const StyledMenuIcon = styled.img`
+  width: 3rem;
+`;
+
 export const Cell: React.FC<{ cell: ICell }> = ({ cell }) => {
+  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+
+  const handleClick = (event: React.MouseEvent<HTMLElement>) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
   return (
-    <CellContainer>
-      {cell.content !== CellContentEnum.Empty && (
-        <ContentContainer src={getContentIcon(cell.content)} alt="Treasure" width={50} />
-      )}
-    </CellContainer>
+    <>
+      <CellContainer aria-controls="customized-menu" aria-haspopup="true" onClick={handleClick}>
+        {cell.contentIcon !== CellContentIconEnum.Empty && (
+          <ContentContainer src={getContentIcon(cell.contentIcon)} alt="Cell Content" />
+        )}
+      </CellContainer>
+
+      <Menu
+        elevation={0}
+        getContentAnchorEl={null}
+        anchorOrigin={{
+          vertical: 'bottom',
+          horizontal: 'center'
+        }}
+        transformOrigin={{
+          vertical: 'top',
+          horizontal: 'center'
+        }}
+        anchorEl={anchorEl}
+        keepMounted={true}
+        open={Boolean(anchorEl)}
+        onClose={handleClose}
+      >
+        {CellMenuArray.map(cellContent => (
+          <StyledMenuItem key={cellContent.id}>
+            <ListItemIcon>
+              {cellContent.icon ? <StyledMenuIcon src={getContentIcon(cellContent.icon)} alt="Cell Content" /> : <></>}
+            </ListItemIcon>
+            <ListItemText primary={cellContent.text} />
+          </StyledMenuItem>
+        ))}
+      </Menu>
+    </>
   );
 };
