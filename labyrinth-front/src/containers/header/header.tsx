@@ -43,7 +43,7 @@ const HeaderContainer = styled.div`
   height: 4rem;
   background-color: ${colors.gray0};
   box-shadow: 0 2px 2px 3px ${colors.gray20};
-  width: 100%;
+  width: 100vw;
   font-weight: bold;
   z-index: ${zIndexes.header};
 
