@@ -45,6 +45,7 @@ export const Cell: React.FC<{ cell: ICell }> = ({ cell }) => {
 
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
+
   };
 
   const handleClose = () => {
@@ -75,7 +76,7 @@ export const Cell: React.FC<{ cell: ICell }> = ({ cell }) => {
           horizontal: 'center'
         }}
         anchorEl={anchorEl}
-        keepMounted={true}
+        keepMounted={false}
         open={Boolean(anchorEl)}
         onClose={handleClose}
       >
