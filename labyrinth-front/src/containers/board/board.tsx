@@ -23,8 +23,6 @@ const BoardRow = styled.div`
 `;
 
 export const Board: React.FC<any> = ({ className }) => {
-  // const size = useWindowSize();
-  // const windowWidth1 = size.width;
   const windowWidth = typeof window === 'object' ? window.innerWidth : undefined;
 
   const cells: ICell[][] = [];

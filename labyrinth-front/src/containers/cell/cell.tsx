@@ -51,6 +51,10 @@ export const Cell: React.FC<{ cell: ICell }> = ({ cell }) => {
     setAnchorEl(null);
   };
 
+  const handleChoice = (event: React.MouseEvent<HTMLElement>) => {
+    setAnchorEl(null);
+  };
+
   return (
     <>
       <CellContainer aria-controls="customized-menu" aria-haspopup="true" onClick={handleClick}>
@@ -76,7 +80,7 @@ export const Cell: React.FC<{ cell: ICell }> = ({ cell }) => {
         onClose={handleClose}
       >
         {CellMenuArray.map(cellContent => (
-          <StyledMenuItem key={cellContent.id}>
+          <StyledMenuItem key={cellContent.id} id={cellContent.id} onClick={handleChoice}>
             <ListItemIcon>
               {cellContent.icon ? <StyledMenuIcon src={getContentIcon(cellContent.icon)} alt="Cell Content" /> : <></>}
             </ListItemIcon>

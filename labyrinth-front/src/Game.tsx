@@ -1,7 +1,7 @@
 import React from 'react';
 import { map, values } from 'ramda';
 import Particles from 'react-particles-js';
-import styled, { createGlobalStyle, ThemeProvider } from 'styled-components';
+import styled, { createGlobalStyle, ThemeProvider } from 'styled-components/macro';
 import { createMuiTheme, MuiThemeProvider, StylesProvider } from '@material-ui/core/styles';
 
 import { colors, sizes, media } from 'utils';
@@ -134,44 +134,49 @@ const StyledBoard = styled(Board)`
 `;
 
 export const Game: React.FC<{}> = () => {
+  const windowWidth = typeof window === 'object' ? window.innerWidth : undefined;
+  const isDesktop = windowWidth && windowWidth > sizes.desktop * 10;
+
   return (
     <AppWrapper className="App">
       <GlobalStyle whiteColor={true} />
       <StylesProvider injectFirst={true}>
         <ThemeProvider theme={theme}>
           <MuiThemeProvider theme={muiTheme}>
-            <StyledParticles
-              params={{
-                particles: {
-                  number: {
-                    value: 100,
-                    density: {
+            {isDesktop && (
+              <StyledParticles
+                params={{
+                  particles: {
+                    number: {
+                      value: 100,
+                      density: {
+                        enable: false
+                      }
+                    },
+                    color: { value: colors.blue70 },
+                    shape: {
+                      type: 'circle'
+                    },
+                    size: {
+                      value: 5,
+                      random: true,
+                      anim: {
+                        speed: 4,
+                        size_min: 0.3
+                      }
+                    },
+                    line_linked: {
                       enable: false
+                    },
+                    move: {
+                      enable: true,
+                      speed: 1,
+                      random: true
                     }
-                  },
-                  color: { value: colors.blue70 },
-                  shape: {
-                    type: 'circle'
-                  },
-                  size: {
-                    value: 5,
-                    random: true,
-                    anim: {
-                      speed: 4,
-                      size_min: 0.3
-                    }
-                  },
-                  line_linked: {
-                    enable: false
-                  },
-                  move: {
-                    enable: true,
-                    speed: 1,
-                    random: true
                   }
-                }
-              }}
-            />
+                }}
+              />
+            )}
             <Header />
             <BoardsContainer>
               <StyledBoard />
