@@ -6,7 +6,7 @@ import Button from '@material-ui/core/Button';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 
-import { CellContentIconEnum, CellMenuArray, colors, getContentIcon, ICell, transition } from 'utils';
+import { ICell, CellContentIconEnum, CellMenuArray, colors, getContentIcon, transition } from 'utils';
 
 const CellContainer = styled(Button)`
   display: inline-block;
@@ -44,17 +44,23 @@ export const Cell: React.FC<{ cell: ICell }> = ({ cell }) => {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
 
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
+    console.log('handleClick cell');
+    // cell.handleClick(event);
     setAnchorEl(event.currentTarget);
 
   };
 
   const handleClose = () => {
+    console.log('handleClose');
     setAnchorEl(null);
   };
 
   const handleChoice = (event: React.MouseEvent<HTMLElement>) => {
+    console.log('handleChoice', event.currentTarget.id);
     setAnchorEl(null);
   };
+
+  // console.log('render Cell', globalState.myBoard);
 
   return (
     <>

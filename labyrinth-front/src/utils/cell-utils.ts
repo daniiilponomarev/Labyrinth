@@ -11,7 +11,7 @@ import Player from 'assets/icons/player.svg';
 export interface ICell {
   id: string;
   contentIcon: CellContentIconEnum;
-  contentText: CellContentIconEnum;
+  contentText: CellContentTextEnum;
 }
 
 export enum CellContentTextEnum {

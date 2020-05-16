@@ -3,12 +3,12 @@ import styled from 'styled-components';
 
 import { Cell } from 'containers';
 import { Wall } from 'components';
-import { generateWallId, ICell } from 'utils';
+import { ICell, generateWallId, BOARD_WIDTH } from 'utils';
 
 const CellWWallsContainer = styled.span`
   position: relative;
   display: inline-block;
-  width: 10%;
+  width: ${100 / BOARD_WIDTH}%;
   height: 100%;
   max-width: 5rem;
   max-height: 5rem;
@@ -20,27 +20,27 @@ export const CellWithWalls: React.FC<{ cell: ICell }> = ({ cell }) => {
 
   return (
     <CellWWallsContainer>
-      <Wall
-        id={generateWallId(id, 'left')}
-        side="left"
-        isActive={Math.random() >= 0.5}
-        isEnabled={Math.random() >= 0.5}
-      />
-      <Wall
-        id={generateWallId(id, 'top')}
-        side="top"
-        isActive={Math.random() >= 0.5}
-        isEnabled={Math.random() >= 0.5}
-      />
+      {/*<Wall*/}
+      {/*  id={generateWallId(id, 'left')}*/}
+      {/*  side="left"*/}
+      {/*  isActive={Math.random() >= 0.5}*/}
+      {/*  isEnabled={Math.random() >= 0.5}*/}
+      {/*/>*/}
+      {/*<Wall*/}
+      {/*  id={generateWallId(id, 'top')}*/}
+      {/*  side="top"*/}
+      {/*  isActive={Math.random() >= 0.5}*/}
+      {/*  isEnabled={Math.random() >= 0.5}*/}
+      {/*/>*/}
       <Cell cell={cell} />
-      {+id >= 90 ? (
-        <Wall
-          id={generateWallId(id, 'bottom')}
-          side="bottom"
-          isActive={Math.random() >= 0.5}
-          isEnabled={Math.random() >= 0.5}
-        />
-      ) : null}
+      {/*{+id >= 90 ? (*/}
+      {/*  <Wall*/}
+      {/*    id={generateWallId(id, 'bottom')}*/}
+      {/*    side="bottom"*/}
+      {/*    isActive={Math.random() >= 0.5}*/}
+      {/*    isEnabled={Math.random() >= 0.5}*/}
+      {/*  />*/}
+      {/*) : null}*/}
     </CellWWallsContainer>
   );
 };
