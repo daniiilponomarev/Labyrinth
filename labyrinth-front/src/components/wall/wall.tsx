@@ -67,12 +67,8 @@ const StyledVerticalWall = styled(VerticalWallSVG)<ISVGWall>`
   fill: ${outerHexagonColor};
   z-index: ${zIndexes.wall};
   height: ${100}%;
-  ${({ wallProps }) =>
-    wallProps.side === positions.left
-      ? `left: -${100 / 8}%;
-         width: ${100 / 4}%;`
-      : `right: -${100 / 10 / 8}%;
-         width: ${100 / 10 / 4}%;`};
+  width: ${100 / 4}%;
+  ${({ wallProps }) => (wallProps.side === positions.left ? `left: -${100 / 8}%;` : `right: -${100 / 8}%;`)};
 
   & .inner-path {
     transition: fill ${transition.average};

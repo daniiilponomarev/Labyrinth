@@ -7,6 +7,7 @@ import { Wall } from 'components';
 import { BOARD_HEIGHT, BOARD_WIDTH, generateWallId, ICell } from 'utils';
 import { useDispatch, useSelector } from 'react-redux';
 import { getCellsArray } from 'selectors';
+import { BoardRow } from '../board-row';
 
 const BoardContainer = styled.div<{ windowWidth: number }>`
   display: flex;
@@ -19,32 +20,33 @@ const BoardContainer = styled.div<{ windowWidth: number }>`
   border-radius: 5px;
 `;
 
-const BoardRow = styled.div`
-  position: relative;
-  height: 10%;
-`;
+// const BoardRow = styled.div`
+//   position: relative;
+//   height: 10%;
+// `;
 
-const getBoardRow: React.FC<{ cells: ICell[]; key: number }> = ({ cells, key }) => {
-  return (
-    <BoardRow key={key}>
-      {/*<Wall*/}
-      {/*  id={generateWallId(cells[cells.length - 1].id, 'right')}*/}
-      {/*  side="right"*/}
-      {/*  isActive={Math.random() >= 0.5}*/}
-      {/*  isEnabled={Math.random() >= 0.5}*/}
-      {/*/>*/}
-      {map((cell: ICell): any => {
-        return <CellWithWalls cell={cell} key={`cell-${cell.id}`} />;
-      }, cells)}
-    </BoardRow>
-  );
-};
+// const getBoardRow: React.FC<{ cells: ICell[]; key: number }> = ({ cells, key }) => {
+//   return (
+//     <BoardRow key={key}>
+//       {/*<Wall*/}
+//       {/*  id={generateWallId(cells[cells.length - 1].id, 'right')}*/}
+//       {/*  side="right"*/}
+//       {/*  isActive={Math.random() >= 0.5}*/}
+//       {/*  isEnabled={Math.random() >= 0.5}*/}
+//       {/*/>*/}
+//       {map((cell: ICell): any => {
+//         return <CellWithWalls cell={cell} key={`cell-${cell.id}`} />;
+//       }, cells)}
+//     </BoardRow>
+//   );
+// };
 
 const getBoardRows: (cells: ICell[]) => any[] = cells => {
   const boardRows = [];
 
   for (let i = 0; i < BOARD_HEIGHT; i++) {
-    boardRows[i] = getBoardRow({ cells: slice(i * BOARD_WIDTH, i * BOARD_WIDTH + BOARD_WIDTH, cells), key: i });
+    // boardRows[i] = getBoardRow({ cells: slice(i * BOARD_WIDTH, i * BOARD_WIDTH + BOARD_WIDTH, cells), key: i });
+    boardRows[i] = <BoardRow cells={slice(i * BOARD_WIDTH, i * BOARD_WIDTH + BOARD_WIDTH, cells)} rowNumber={i} />;
   }
 
   return boardRows;
@@ -104,6 +106,7 @@ export const Board: React.FC<{ className?: string }> = ({ className }) => {
       {/*}, cells)}*/}
 
       {getBoardRows(cells1)}
+
     </BoardContainer>
   );
 };
